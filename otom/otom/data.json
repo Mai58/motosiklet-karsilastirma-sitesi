@@ -1,0 +1,14 @@
+{
+
+     "r1": {
+    "hacim": "1000 cc",
+    "beygir": "200 hp",
+    "agirlik": "199 kg"
+    },
+
+    "h2r":{
+        "hacim": "998 cc",
+        "beygir": "300 hp",
+        "agirlik": "250 kg"
+    }
+}
