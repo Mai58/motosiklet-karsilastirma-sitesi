@@ -6,9 +6,9 @@ Bu proje, iki farklı motosikleti yan yana getirerek teknik özelliklerini ve g�
 
 ### 📂 Proje Gelişim Günlüğü (Versiyon Notları)
 
-- **V4 (2026-05-09):**
-- karşılaştırma bölümünün taslağı yapıldı.
-- JSON dosyası oluşturuldu.
+- **V5 (2026-05-09):**
+- js dosyası kuruldu
+- arama çubuğu işlevsel hale getirildi
 
 ---
 
@@ -27,7 +27,8 @@ Bu proje, iki farklı motosikleti yan yana getirerek teknik özelliklerini ve g�
 
 ### 🎯 Gelecek Hedefler (To-Do)
 
-- script.js eklenecek.
+-arama çubuğuna otomatik ön görme eklenecek.
+
 ---
 
 ### 📜 Lisans

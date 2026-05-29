@@ -40,17 +40,9 @@ body{
     border: 1px solid;
     background-color: chocolate;
 }
-
-.search-btn{
-    display: flex;
-    background-color: cornflowerblue;
-    border-radius: 20px 20px 0 0;
-    justify-content: center;
-    align-items: center;
-}
 input{
     height: 50px;
-     max-width: 80%;
+    width: 100%;
     border-radius: 35px;
 }
 .img-box{
@@ -96,11 +88,30 @@ input{
     background-color: beige;
     align-items: center;
     border: 1px solid;
-
+    
 }
 
 .features-row{
     display: flex;
     flex-direction: column;
+}
 
+.motor-kolon{
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#sol-oneriler{
+width: 48%;
+background: #fff;
+ border: 1px solid #ccc; 
+ position: absolute;
+z-index: 99
+}
+
+#sag-oneriler{
+ width: 48%;
+background: #fff;
+ border: 1px solid #ccc; 
+ position: absolute;
+z-index: 99
 }
