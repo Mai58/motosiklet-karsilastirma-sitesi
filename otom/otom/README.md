@@ -6,9 +6,8 @@ Bu proje, iki farklı motosikleti yan yana getirerek teknik özelliklerini ve g�
 
 ### 📂 Proje Gelişim Günlüğü (Versiyon Notları)
 
-- **V5 (2026-05-09):**
-- js dosyası kuruldu
-- arama çubuğu işlevsel hale getirildi
+- **V6 (2026-05-09):**
+  -suggestion eklendi
 
 ---
 
