@@ -1,14 +1,310 @@
+
+
 {
 
-     "r1": {
-    "hacim": "1000 cc",
-    "beygir": "200 hp",
-    "agirlik": "199 kg"
+  "kawasaki-ninja-h2r-2026": {
+    "kimlik_bilgileri": {
+      "marka": "Kawasaki",
+      "model": "Ninja H2R",
+      "tam_model_adi": "Kawasaki Ninja H2R ABS",
+      "versiyon": "Pist Versiyonu (Closed-Course Only)",
+      "segment": "Hypersport / Track Only",
+      "uretim_durumu": "Aktif",
+      "ulke": "Japonya",
+      "resmi_websitesi": "https://www.kawasaki.com"
     },
-
-    "h2r":{
-        "hacim": "998 cc",
-        "beygir": "300 hp",
-        "agirlik": "250 kg"
+    "vitrin_ve_performans": {
+      "max_hiz": "400 km/h",
+      "hizlanma_0_100": "2.2 sn",
+      "80_120_hizlanma": "1.1 sn",
+      "100_200_hizlanma": "2.4 sn",
+      "son_hiz_test": "400 km/h",
+      "guc_agirlik_orani": "1.51 hp/kg",
+      "tork_agirlik_orani": "0.76 Nm/kg"
+    },
+    "kullanici_odakli_etiketler": {
+      "ehliyet seviyesi": "A",
+      "offroad_uygun": false,
+      "uzun_yol_uygun": false,
+      "sehir_ici_uygun": false,
+      "boy_kisa_surucu_uygun": false
+    },
+    "motor_ve_mekanik": {
+      "motor_hacmi": "998 cc",
+      "beygir_gucu_hp": "310 hp",
+      "guc_devri_rpm": "14000 rpm",
+      "maks_tork_nm": "165 Nm",
+      "tork_devri_rpm": "12500 rpm",
+      "uretici_guc_verisi": "326 PS (Ram-Air ile)",
+      "uretici_tork_verisi": "165 Nm",
+      "silindir_sayisi": "4",
+      "silindir_dizilimi": "Sıralı Dörtlü (Inline-4)",
+      "zamanlama_tipi": "4 Zamanlı",
+      "supap_sayisi": "16",
+      "eksantrik_tipi": "DOHC",
+      "cap_strok": "76.0 mm x 55.0 mm",
+      "sikistirma_orani": "8.3:1",
+      "sogutma_sistemi": "Sıvı Soğutmalı",
+      "yakit_besleme": "DFI, 50mm gaz kelebeği (4 adet), Çift Enjektörlü, Kawasaki Supercharger",
+      "gaz_kontrolu": "Elektronik Gaz Kelebeği (Ride-by-Wire)",
+      "atesleme_tipi": "TCBI (Dijital Avanslı)",
+      "yaglama_tipi": "Zorunlu Yağlama, Islak Karter (Yağ Soğutuculu)",
+      "euro_standardi": "-",
+      "co2_salinimi": "-"
+    },
+    "sanziman_ve_aktarma": {
+      "vites_sayisi": "6",
+      "sanziman_tipi": "Manuel (Dog-ring)",
+      "son_aktarma": "Mühürlü Zincir",
+      "debriyaj_yapisi": "Islak, Çoklu Disk",
+      "kaydirmali_debriyaj": true,
+      "zincir_ebati": "-"
+    },
+    "ergonomi_ve_boyutlar": {
+      "sele_yuksekligi": "830 mm",
+      "yolcu_sele_yuksekligi": "-",
+      "sele_genisligi": "-",
+      "islak_agirlik": "216 kg",
+      "kuru_agirlik": "196 kg",
+      "depo_hacmi": "17 litre",
+      "tahmini_menzil": "140 km",
+      "toplam_uzunluk": "2070 mm",
+      "toplam_genislik": "850 mm",
+      "toplam_yukseklik": "1160 mm",
+      "yerden_yukseklik": "130 mm",
+      "aks_mesafesi": "1450 mm",
+      "tasima_kapasitesi": "-"
+    },
+    "yakit_ve_ekonomi": {
+      "sehir_ici_tuketim": "14.5 lt/100km",
+      "sehir_disi_tuketim": "8.5 lt/100km",
+      "karma_tuketim": "12.0 lt/100km",
+      "yillik_tahmini_yakit_maliyeti": "-"
+    },
+    "suspansiyon_ve_fren": {
+      "on_suspansiyon": "Kayaba (KYB) AOS-II Ters Teleskopik Çatal",
+      "on_suspansiyon_cap": "43 mm",
+      "on_suspansiyon_hareket": "120 mm",
+      "on_suspansiyon_ayarlanabilirlik": "Geri tepme, sıkıştırma og ön yükleme ayarlı",
+      "arka_suspansiyon": "Uni-Trak, Öhlins TTX36 gaz şarjlı amortisör",
+      "arka_suspansiyon_ayarlanabilirlik": "30 kademe sıkıştırma/geri tepme, 16 kademe ön yükleme ayarlı",
+      "suspansiyon_ayari_genel": "Tam Ayarlanabilir",
+      "on_fren_tipi": "Çift Yarı Yüzer Brembo Disk, Radyal Montaj M50 Monoblok Kaliperler",
+      "on_fren_disk_sayisi": "2",
+      "on_disk_cap": "330 mm",
+      "on_kaliper_tipi": "4 Pistonlu",
+      "arka_fren_tipi": "Tek Disk, Brembo Karşıt Kaliper",
+      "arka_fren_disk_sayisi": "1",
+      "arka_disk_cap": "250 mm",
+      "kaster_acisi": "25.1°",
+      "iz_mesafesi": "108 mm"
+    },
+    "lastik_ve_jant": {
+      "on_lastik_ebat": "120/600 R17",
+      "arka_lastik_ebat": "190/650 R17",
+      "on_jant_olcusu": "17 inç",
+      "arka_jant_olcusu": "17 inç",
+      "jant_malzemesi": "Alüminyum Alaşım",
+      "lastik_tipi": "Yarış Sliği (Slick)",
+      "lastik_markasi": "Bridgestone",
+      "lastik_modeli": "Racing Battlax V01"
+    },
+    "elektronik_ve_guvenlik": {
+      "abs_sistemi": "KIBS (Kawasaki Akıllı Anti-Blokaj Fren Sistemi)",
+      "abs_viraj_destekli": true,
+      "viraj_abs": true,
+      "cekis_kontrol": "KTRC (Kawasaki Çekiş Kontrolü - 9 Modlu)",
+      "viraj_cekis_kontrol": true,
+      "arka_kalkis_onleme": true,
+      "wheelie_control": true,
+      "launch_control": true,
+      "motor_fren_kontrol": true,
+      "semi_aktif_suspansiyon": false,
+      "radar_sistemi": false,
+      "hiz_sabitleyici": false,
+      "adaptif_hiz_sabitleyici": false,
+      "yokus_kalkis": false,
+      "acil_fren_uyarisi": false,
+      "imu_sensoru": "6 Eksenli Bosch IMU",
+      "surus_modlari": "Pist Modları (Çekiş ve Güç Kombinasyonları)",
+      "quickshifter_tipi": "KQS (Çift Yönlü - Alt ve Üst Vitesler)"
+    },
+    "donanim_ve_konfor": {
+      "gosterge_ekrani": "Analog + Dijital LCD Ekran",
+      "ekran_boyutu": "-",
+      "akilli_telefon_baglanti": true,
+      "aydinlatma_teknolojisi": "LED (Yalnızca Arka Stop, Ön Far Yoktur)",
+      "viraj_aydinlatma": false,
+      "anahtarsiz_calistirma": false,
+      "usb_soketi": "-",
+      "elcik_isitma": "-",
+      "koltuk_isitma": "-",
+      "lastik_basincli_sensor": false,
+      "kor_nokta_uyari": false,
+      "ayarlanabilir_cam": "-",
+      "geri_vites": false,
+      "ruzgar_koruma_seviyesi": "Yüksek (Karbon Fiber Aerodinamik Kanatçıklar)",
+      "yan_canta_destegi": false,
+      "ust_canta_destegi": false,
+      "orta_sehpa": false,
+      "aku_kapasitesi": "-"
+    },
+    "medya_icerik": {
+      "galeri": []
     }
+  },
+  "yamaha-yzf-r1-2026": {
+    "kimlik_bilgileri": {
+      "marka": "Yamaha",
+      "model": "YZF-R1",
+      "tam_model_adi": "Yamaha YZF-R1 ABS",
+      "versiyon": "Standart",
+      "segment": "Superbike",
+      "uretim_durumu": "Aktif",
+      "ulke": "Japonya",
+      "resmi_websitesi": "https://www.yamaha-motor.eu"
+    },
+    "vitrin_ve_performans": {
+      "max_hiz": "299 km/h",
+      "hizlanma_0_100": "2.9 sn",
+      "80_120_hizlanma": "1.3 sn",
+      "100_200_hizlanma": "3.1 sn",
+      "son_hiz_test": "299 km/h",
+      "guc_agirlik_orani": "0.99 hp/kg",
+      "tork_agirlik_orani": "0.56 Nm/kg"
+    },
+    "kullanici_odakli_etiketler": {
+      "ehliyet seviyesi": "A",
+      "offroad_uygun": false,
+      "uzun_yol_uygun": false,
+      "sehir_ici_uygun": false,
+      "boy_kisa_surucu_uygun": false
+    },
+    "motor_ve_mekanik": {
+      "motor_hacmi": "998 cc",
+      "beygir_gucu_hp": "200 hp",
+      "guc_devri_rpm": "13500 rpm",
+      "maks_tork_nm": "113.3 Nm",
+      "tork_devri_rpm": "11500 rpm",
+      "uretici_guc_verisi": "200 PS",
+      "uretici_tork_verisi": "113.3 Nm",
+      "silindir_sayisi": "4",
+      "silindir_dizilimi": "Sıralı Dörtlü (Inline-4, Crossplane CP4)",
+      "zamanlama_tipi": "4 Zamanlı",
+      "supap_sayisi": "16",
+      "eksantrik_tipi": "DOHC",
+      "cap_strok": "79.0 mm x 50.9 mm",
+      "sikistirma_orani": "13.0:1",
+      "sogutma_sistemi": "Sıvı Soğutmalı",
+      "yakit_besleme": "Yarış Tipi Elektronik Yakıt Enjeksiyonu",
+      "gaz_kontrolu": "YCC-T Elektronik Gaz Kelebeği (Ride-by-Wire)",
+      "atesleme_tipi": "TCI (Dijital)",
+      "yaglama_tipi": "Islak Karter",
+      "euro_standardi": "Euro 5+",
+      "co2_salinimi": "159 g/km"
+    },
+    "sanziman_ve_aktarma": {
+      "vites_sayisi": "6",
+      "sanziman_tipi": "Manuel",
+      "son_aktarma": "Zincir",
+      "debriyaj_yapisi": "Islak, Çoklu Disk",
+      "kaydirmali_debriyaj": true,
+      "zincir_ebati": "525"
+    },
+    "ergonomi_ve_boyutlar": {
+      "sele_yuksekligi": "855 mm",
+      "yolcu_sele_yuksekligi": "-",
+      "sele_genisligi": "-",
+      "islak_agirlik": "201 kg",
+      "kuru_agirlik": "189 kg",
+      "depo_hacmi": "17 litre",
+      "tahmini_menzil": "240 km",
+      "toplam_uzunluk": "2055 mm",
+      "toplam_genislik": "690 mm",
+      "toplam_yukseklik": "1165 mm",
+      "yerden_yukseklik": "130 mm",
+      "aks_mesafesi": "1405 mm",
+      "tasima_kapasitesi": "-"
+    },
+    "yakit_ve_ekonomi": {
+      "sehir_ici_tuketim": "8.2 lt/100km",
+      "sehir_disi_tuketim": "5.5 lt/100km",
+      "karma_tuketim": "6.8 lt/100km",
+      "yillik_tahmini_yakit_maliyeti": "-"
+    },
+    "suspansiyon_ve_fren": {
+      "on_suspansiyon": "KYB Ters Teleskopik Çatal",
+      "on_suspansiyon_cap": "43 mm",
+      "on_suspansiyon_hareket": "120 mm",
+      "on_suspansiyon_ayarlanabilirlik": "Tam Ayarlanabilir (Sıkıştırma, Geri Tepme, Ön Yükleme)",
+      "arka_suspansiyon": "Salınım kollu, KYB Link Tipi Amortisör",
+      "arka_suspansiyon_ayarlanabilirlik": "Tam Ayarlanabilir (Sıkıştırma, Geri Tepme, Ön Yükleme)",
+      "suspansiyon_ayari_genel": "Tam Ayarlanabilir",
+      "on_fren_tipi": "Çift Hidrolik Disk, Radyal 4 Pistonlu Kaliperler",
+      "on_fren_disk_sayisi": "2",
+      "on_disk_cap": "320 mm",
+      "on_kaliper_tipi": "4 Pistonlu",
+      "arka_fren_tipi": "Tek Hidrolik Disk",
+      "arka_fren_disk_sayisi": "1",
+      "arka_disk_cap": "220 mm",
+      "kaster_acisi": "24.0°",
+      "iz_mesafesi": "102 mm"
+    },
+    "lastik_ve_jant": {
+      "on_lastik_ebat": "120/70 ZR17 M/C (58W)",
+      "arka_lastik_ebat": "190/55 ZR17 M/C (75W)",
+      "on_jant_olcusu": "17 inç",
+      "arka_jant_olcusu": "17 inç",
+      "jant_malzemesi": "Magnezyum Alaşım",
+      "lastik_tipi": "Tubeless (İçsiz)",
+      "lastik_markasi": "Bridgestone",
+      "lastik_modeli": "Battlax Racing Street RS11"
+    },
+    "elektronik_ve_guvenlik": {
+      "abs_sistemi": "BC (Fren Kontrolü - ABS)",
+      "abs_viraj_destekli": true,
+      "viraj_abs": true,
+      "cekis_kontrol": "TCS (Çekiş Kontrol Sistemi - 9 Modlu)",
+      "viraj_cekis_kontrol": true,
+      "arka_kalkis_onleme": true,
+      "wheelie_control": true,
+      "launch_control": true,
+      "motor_fren_kontrol": true,
+      "semi_aktif_suspansiyon": false,
+      "radar_sistemi": false,
+      "hiz_sabitleyici": false,
+      "adaptif_hiz_sabitleyici": false,
+      "yokus_kalkis": false,
+      "acil_fren_uyarisi": false,
+      "imu_sensoru": "6 Eksenli IMU",
+      "surus_modlari": "PWR (Güç Dağıtım Modları - 4 Mod)",
+      "quickshifter_tipi": "QSS (Çift Yönlü - Alt ve Üst Vitesler)"
+    },
+    "donanim_ve_konfor": {
+      "gosterge_ekrani": "TFT Ekran",
+      "ekran_boyutu": "4.3 inç",
+      "akilli_telefon_baglanti": false,
+      "aydinlatma_teknolojisi": "Full LED",
+      "viraj_aydinlatma": false,
+      "anahtarsiz_calistirma": false,
+      "usb_soketi": "-",
+      "elcik_isitma": "-",
+      "koltuk_isitma": "-",
+      "lastik_basincli_sensor": false,
+      "kor_nokta_uyari": false,
+      "ayarlanabilir_cam": "-",
+      "geri_vites": false,
+      "ruzgar_koruma_seviyesi": "Orta",
+      "yan_canta_destegi": false,
+      "ust_canta_destegi": false,
+      "orta_sehpa": false,
+      "aku_kapasitesi": "-",
+      "sele_opsiyonlari": [],
+      "aksesuar_paketleri": []
+    },
+    "medya_icerik": {
+      "galeri": []
+    }
+  }
 }
+
