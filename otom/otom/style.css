@@ -156,7 +156,7 @@ display: flex;
 
 #sol-oneriler{
 width: 48%;
-border-radius: 100px;
+border-radius: 50px;
 background: #fff;
  border: 1px solid #ccc; 
  position: absolute;
@@ -165,7 +165,7 @@ z-index: 99
 
 #sag-oneriler{
  width: 48%;
- border-radius: 100px;
+ border-radius: 50px;
 background: #fff;
  border: 1px solid #ccc; 
  position: absolute;
@@ -176,7 +176,7 @@ z-index: 99
     color: #333333; /* Varsayılan yazı rengi (Kutun beyaz olduğu için koyu gri/siyah iyi gider) */
     transition: all 0.2s ease-in-out; /* Geçiş animasyonu (Cila) */
     background-color: transparent;
-    border-radius: 35px;
+    border-radius: 15px;
 }
 
 /* İŞTE ARADIĞIN SİHİR: Sadece mouse ile üzerine gelinen TEK BİR satırı parlatır */

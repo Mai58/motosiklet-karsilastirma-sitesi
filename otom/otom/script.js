@@ -6,64 +6,117 @@ let solAktifIndeks = 0;
 let sagAktifIndeks = 0;
 
 // =======================================================
-// 🔥 [YENİ] AKILLI KIYASLAMA ŞEMASI (METRİK DEPOSU)
+// 🔥 DEVASA KIYASLAMA ŞEMASI (METRİK DEPOSU)
 // =======================================================
-// Hangi özelliğin yüksek, hangisinin düşük olması gerektiğini burada belirliyoruz kral.
-// "yuksek_iyi": true -> Sayı ne kadar büyükse o kadar iyi (Örn: Beygir)
-// "yuksek_iyi": false -> Sayı ne kadar küçükse o kadar iyi (Örn: Ağırlık, Yakıt)
+// yuksek_iyi: false -> Değeri küçük olan motor yeşil yanar (Örn: Tüketim, Hızlanma süresi, Ağırlık)
+// yuksek_iyi: true  -> Değeri büyük olan motor yeşil yanar (Örn: Beygir, Tork, Depo)
 const kiyaslamaMetrikleri = {
-    // Motor ve Performans
-    "motor_hacmi": { yuksek_iyi: true },
-    "beygir_gucu": { yuksek_iyi: true },
-    "azami_tork": { yuksek_iyi: true },
-    "max_hiz": { yuksek_iyi: true },
-    "sifir_yuz": { yuksek_iyi: false }, // 0-100 saniyesi ne kadar azsa o kadar iyi!
+    // 📊 Performans ve Hız Verileri
+    "max_hiz": { yuksek_iyi: true, tip: "sayi" },
+    "hizlanma_0_100": { yuksek_iyi: false, tip: "sayi" },
+    "80_120_hizlanma": { yuksek_iyi: false, tip: "sayi" },
+    "100_200_hizlanma": { yuksek_iyi: false, tip: "sayi" },
+    "son_hiz_test": { yuksek_iyi: true, tip: "sayi" },
     
-    // Tüketim ve Ölçüler
-    "yakit_tuketimi": { yuksek_iyi: false }, // Az yakan kazanır!
-    "islak_agirlik": { yuksek_iyi: false }, // Hafif olan motor daha seridir, az olan kazanır!
-    "sele_yuksekligi": { yuksek_iyi: false }, // Genelde yere yakınlık kontrolü kolaylaştırır (tercihe bağlı ama küçüğü seçtik)
-    "depo_hacmi": { yuksek_iyi: true }, // Büyük depo = daha çok menzil
-    
-    // Garanti ve Fiyat (İleride eklersen diye altyapı hazır)
-    "garanti_suresi": { yuksek_iyi: true }
-};
+    // ⚙️ Motor Bloku Verileri
+    "motor_hacmi": { yuksek_iyi: true, tip: "sayi" },
+    "beygir_gucu_hp": { yuksek_iyi: true, tip: "sayi" },
+    "maks_tork_nm": { yuksek_iyi: true, tip: "sayi" },
+    "silindir_sayisi": { yuksek_iyi: true, tip: "sayi" },
+    "vites_sayisi": { yuksek_iyi: true, tip: "sayi" },
 
+    // ⛽ Yakıt Tüketim Standartları (İstediğin Neon Yeşil Ayarları Burada)
+    "sehir_ici_tuketim": { yuksek_iyi: false, tip: "sayi" },  // Az yakan kazanır!
+    "sehir_disi_tuketim": { yuksek_iyi: false, tip: "sayi" }, // Az yakan kazanır!
+    "karma_tuketim": { yuksek_iyi: false, tip: "sayi" },      // Az yakan kazanır!
+    "tahmini_menzil": { yuksek_iyi: true, tip: "sayi" },     // Menzili çok olan kazanır!
+    
+    // ⚖️ Ölçü ve Hacimler
+    "agirlik": { yuksek_iyi: false, tip: "sayi" },            // Hafif olan motor kazanır!
+    "kuru_agirlik": { yuksek_iyi: false, tip: "sayi" },       // Hafif olan motor kazanır!
+    "depo_hacmi": { yuksek_iyi: true, tip: "sayi" },
+
+    // 💻 Elektronik Sürücü Asistanları (Var/Yok Kontrolü)
+    "abs_sistemi": { yuksek_iyi: true, tip: "teknoloji" },
+    "abs_viraj_destekli": { yuksek_iyi: true, tip: "teknoloji" },
+    "viraj_abs": { yuksek_iyi: true, tip: "teknoloji" },
+    "cekis_kontrol": { yuksek_iyi: true, tip: "teknoloji" },
+    "viraj_cekis_kontrol": { yuksek_iyi: true, tip: "teknoloji" },
+    "wheelie_control": { yuksek_iyi: true, tip: "teknoloji" },
+    "launch_control": { yuksek_iyi: true, tip: "teknoloji" },
+    "hiz_sabitleyici": { yuksek_iyi: true, tip: "teknoloji" },
+    "adaptif_hiz_sabitleyici": { yuksek_iyi: true, tip: "teknoloji" },
+    "surus_modlari": { yuksek_iyi: true, tip: "teknoloji" },
+    "quickshifter_tipi": { yuksek_iyi: true, tip: "teknoloji" },
+    
+    // 🛠️ Konfor Donanımları
+    "akilli_telefon_baglanti": { yuksek_iyi: true, tip: "teknoloji" },
+    "anahtarsiz_calistirma": { yuksek_iyi: true, tip: "teknoloji" },
+    "elcik_isitma": { yuksek_iyi: true, tip: "teknoloji" },
+    "koltuk_isitma": { yuksek_iyi: true, tip: "teknoloji" },
+    "lastik_basincli_sensor": { yuksek_iyi: true, tip: "teknoloji" }
+};
+// =======================================================
+// 🗺️ HTML ID EŞLEME HARİTASI (GÜNCELLENDİ)
+// =======================================================
+const idHaritasi = {
+    // Kimlik
+    "marka": "marka", "model": "model", "tam_model_adi": "tam_model_adi", "versiyon": "versiyon", "segment": "segment", "uretim_durumu": "uretim_durumu", "ulke": "ulke",
+    // Performans
+    "max_hiz": "max_hiz", "hizlanma_0_100": "hizlanma_0_100", "80_120_hizlanma": "80_120_hizlanma", "100_200_hizlanma": "100_200_hizlanma", "son_hiz_test": "son_hiz_test", "guc_agirlik_orani": "guc_agirlik_orani", "tork_agirlik_orani": "tork_agirlik_orani", "yaklasik_fiyat": "yaklasik_fiyat",
+    
+    // 🪪 EHLİYET VE PROFİL BÖLÜMÜ (BURASI DÜZELTİLDİ 🎯)
+    // JSON'daki anahtar kelimeler sırasıyla senin HTML'indeki ID'lere bağlanıyor:
+"ehliyet seviyesi": "ehliyet_seviyesi", 
+    "ehliyet_sinifi": "ehliyet_sinifi",
+    "gerekli_ehliyet_sinifi": "ehliyet_sinifi",
+    "gerekli_ehliyet": "ehliyet_sinifi",
+    
+    "offroad_uygun": "offroad_uygun", "uzun_yol_uygun": "uzun_yol_uygun", "sehir_ici_uygun": "sehir_ici_uygun", "boy_kisa_surucu_uygun": "boy_kisa_surucu_uygun",
+    // Mekanik
+    "motor_hacmi": "motor-hacmi", "beygir_gucu_hp": "beygir_gucu_hp", "guc_devri_rpm": "guc_devri_rpm", "maks_tork_nm": "maks_tork_nm", "tork_devri_rpm": "tork_devri_rpm", "uretici_guc_verisi": "uretici_guc_verisi", "uretici_tork_verisi": "uretici_tork_verisi", "silindir_sayisi": "silindir_sayisi", "silindir_dizilimi": "silindir_dizilimi", "zamanlama_tipi": "zamanlama_tipi", "supap_sayisi": "supap_sayisi", "eksantrik_tipi": "eksantrik_tipi", "cap_strok": "cap_strok", "sikistirma_orani": "sikistirma_orani", "sogutma_sistemi": "sogutma_sistemi", "yakit_besleme": "yakit_besleme", "gaz_kontrolu": "gaz_kontrolu", "atesleme_tipi": "atesleme_tipi", "yaglama_tipi": "yaglama_tipi", "euro_standardi": "euro_standardi", "co2_salinimi": "co2_salinimi",
+    // Aktarma
+    "vites_sayisi": "vites_sayisi", "sanziman_tipi": "sanziman_tipi", "son_aktarma": "son_aktarma", "debriyaj_yapisi": "debriyaj_yapisi", "kaydirmali_debriyaj": "kaydirmali_debriyaj", "zincir_ebati": "zincir_ebati",
+    // Ölçüler
+    "sele_yuksekligi": "sele_yuksekligi", "yolcu_sele_yuksekligi": "yolcu_sele_yuksekligi", "sele_genisligi": "sele_genisligi", "agirlik": "agirlik", "kuru_agirlik": "kuru_agirlik", "depo_hacmi": "depo_hacmi", "tahmini_menzil": "tahmini_menzil", "toplam_uzunluk": "toplam_uzunluk", "toplam_genislik": "toplam_genislik", "toplam_yukseklik": "toplam_yukseklik", "yerden_yukseklik": "yerden_yukseklik", "aks_mesafesi": "aks_mesafesi", "tasima_kapasitesi": "tasima_kapasitesi",
+    // Tüketim
+    "sehir_ici_tuketim": "sehir_ici_tuketim", "sehir_disi_tuketim": "sehir_disi_tuketim", "karma_tuketim": "karma_tuketim", "yillik_tahmini_yakit_maliyeti": "yillik_tahmini_yakit_maliyeti",
+    // Yürüyen
+    "on_suspansiyon": "on_suspansiyon", "on_suspansiyon_cap": "on_suspansiyon_cap", "on_suspansiyon_hareket": "on_suspansiyon_hareket", "on_suspansiyon_ayarlanabilirlik": "on_suspansiyon_ayarlanabilirlik", "arka_suspansiyon": "arka_suspansiyon", "arka_suspansiyon_ayarlanabilirlik": "arka_suspansiyon_ayarlanabilirlik", "suspansiyon_ayari_genel": "suspansiyon_ayari_genel", "on_fren_tipi": "on_fren_tipi", "on_fren_disk_sayisi": "on_fren_disk_sayisi", "on_disk_cap": "on_disk_cap", "on_kaliper_tipi": "on_kaliper_tipi", "arka_fren_tipi": "arka_fren_tipi", "arka_fren_disk_sayisi": "arka_fren_disk_sayisi", "arka_disk_cap": "arka_disk_cap", "kaster_acisi": "kaster_acisi", "iz_mesafesi": "iz_mesafesi",
+    // Lastik
+    "on_lastik_ebat": "on_lastik_ebat", "arka_lastik_ebat": "arka_lastik_ebat", "on_jant_olcusu": "on_jant_olcusu", "arka_jant_olcusu": "arka_jant_olcusu", "jant_malzemesi": "jant_malzemesi", "lastik_tipi": "lastik_tipi", "lastik_markasi": "lastik_markasi", "lastik_modeli": "lastik_modeli",
+    // Elektronik Asistanlar
+    "abs_sistemi": "abs_sistemi", "abs_viraj_destekli": "abs_viraj_destekli", "viraj_abs": "viraj_abs", "cekis_kontrol": "cekis_kontrol", "viraj_cekis_kontrol": "viraj_cekis_kontrol", "arka_kalkis_onleme": "arka_kalkis_onleme", "wheelie_control": "wheelie_control", "launch_control": "launch_control", "motor_fren_kontrol": "motor_fren_kontrol", "semi_aktif_suspansiyon": "semi_aktif_suspansiyon", "radar_sistemi": "radar_sistemi", "hiz_sabitleyici": "hiz_sabitleyici", "adaptif_hiz_sabitleyici": "adaptif_hiz_sabitleyici", "yokus_kalkis": "yokus_kalkis", "acil_fren_uyarisi": "acil_fren_uyarisi", "imu_sensoru": "imu_sensoru", "surus_modlari": "surus_modlari", "quickshifter_tipi": "quickshifter_tipi",
+    // Konfor
+    "gosterge_ekrani": "gosterge_ekrani", "ekran_boyutu": "ekran_boyutu", "akilli_telefon_baglanti": "akilli_telefon_baglanti", "aydinlatma_teknolojisi": "aydinlatma_teknolojisi", "viraj_aydinlatma": "viraj_aydinlatma", "anahtarsiz_calistirma": "anahtarsiz_calistirma", "usb_soketi": "usb_soketi", "elcik_isitma": "elcik_isitma", "koltuk_isitma": "koltuk_isitma", "lastik_basincli_sensor": "lastik_basincli_sensor", "kor_nokta_uyari": "kor_nokta_uyari", "ayarlanabilir_cam": "ayarlanabilir_cam", "geri_vites": "geri_vites", "ruzgar_koruma_seviyesi": "ruzgar_koruma_seviyesi", "yan_canta_destegi": "yan_canta_destegi", "ust_canta_destegi": "ust_canta_destegi", "orta_sehpa": "orta_sehpa"
+};
 // 2. ADIM: data.json dosyasını çekip depoya atıyoruz
 fetch('data.json')
     .then(response => {
-        if (!response.ok) {
-            throw new Error("Dosya bulunamadı reis!");
-        }
+        if (!response.ok) throw new Error("Dosya bulunamadı reis!");
         return response.json();
     })
     .then(data => {
         motorVerileri = data;
-        console.log("Motor verileri başarıyla yüklendi!", motorVerileri);
+        console.log("Motor verileri başarıyla yüklendi kral!", motorVerileri);
     })
     .catch(error => console.error("Veri çekilirken patladık:", error));
 
-// 3. ADIM: HTML'deki elemanları senin HTML'ine göre cımbızla seçiyoruz
+// 3. ADIM: HTML elemanlarını tanımlıyoruz
 const solInput = document.getElementById('left');
 const sagInput = document.getElementById('right');
 const solOneriKutusu = document.getElementById('sol-oneriler');
 const sagOneriKutusu = document.getElementById('sag-oneriler');
-
-// --- RESİM VE LIGHTBOX ELEMENTLERİ ---
 const solResimElementi = document.getElementById("resim-sol"); 
 const sagResimElementi = document.getElementById("resim-sag"); 
-
+const solIsimElementi = document.getElementById("sol-motor-adi");
+const sagIsimElementi = document.getElementById("sag-motor-adi");
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 const lightboxKapat = document.getElementById("lightbox-kapat");
 
-// --- MOTOR İSİM KUTULARINI SEÇİYORUZ ---
-const solIsimElementi = document.getElementById("sol-motor-adi");
-const sagIsimElementi = document.getElementById("sag-motor-adi");
-
-
 // =======================================================
-// 🔥 [YENİ] DİNAMİK VERİ BASMA FONKSİYONU
+// 🔥 KATMANLI VERİLERİ EKRANA BASMA MOTORU
 // =======================================================
 function katmanliVerileriEkranaBas(yon, motorData) {
     if (!motorData) return;
@@ -74,23 +127,19 @@ function katmanliVerileriEkranaBas(yon, motorData) {
         if (typeof kategoriIcerigi === 'object' && kategoriIcerigi !== null && !Array.isArray(kategoriIcerigi)) {
             Object.keys(kategoriIcerigi).forEach(ozellikKey => {
                 let deger = kategoriIcerigi[ozellikKey];
-                
-                // HTML ID eşleşme istisnalarını yönetiyoruz
-                let htmlId = `${yon}-${ozellikKey}`;
-                if (ozellikKey === "motor_hacmi") htmlId = `${yon}-motor-hacmi`;
-                if (ozellikKey === "islak_agirlik") htmlId = `${yon}-agirlik`;
+                let idSufix = idHaritasi[ozellikKey] || ozellikKey;
+                let htmlId = `${yon}-${idSufix}`;
 
                 const element = document.getElementById(htmlId);
                 
                 if (element) {
-                    // Varsayılan stilleri sıfırla (Kıyaslamadan önce temiz sayfa)
                     element.style.fontWeight = "normal";
                     element.style.color = "";
 
-                    // Boolean (true/false) donanım verileri
-                    if (deger === true) {
+                    // Boolean (Var/Yok) Kontrolü
+                    if (deger === true || String(deger).toLowerCase() === "var") {
                         element.innerHTML = '<span style="color:#00ff66; font-weight:bold;">Var ✅</span>';
-                    } else if (deger === false) {
+                    } else if (deger === false || String(deger).toLowerCase() === "yok") {
                         element.innerHTML = '<span style="color:#ff3333; font-weight:bold;">Yok ❌</span>';
                     } else if (deger === "" || deger === "-") {
                         element.innerText = "-";
@@ -104,93 +153,88 @@ function katmanliVerileriEkranaBas(yon, motorData) {
 }
 
 // =======================================================
-// 🔥 [YENİ] CANAVAR KIYASLAMA MOTORU (KAZANANI KALIN YAPAR)
+// 🔥 GELİŞMİŞ HİBRİT KIYASLAMA VE NEON YEŞİL YAKMA MOTORU
 // =======================================================
 function motorlariKiyasla() {
-    // İki tarafın da girdilerini alıp JSON'da var mı bakıyoruz
     const solGiris = solInput.value.toLowerCase().trim();
     const sagGiris = sagInput.value.toLowerCase().trim();
 
-    const solKey = Object.keys(motorVerileri).find(key => {
-        const obj = motorVerileri[key];
-        const tamAd = (obj.kimlik_bilgileri && obj.kimlik_bilgileri.tam_model_adi) ? obj.kimlik_bilgileri.tam_model_adi.toLowerCase() : "";
-        return key.toLowerCase().trim() === solGiris || tamAd === solGiris;
+    if (!solGiris || !sagGiris) return;
+
+    // Stilleri tamamen sıfırla
+    Object.keys(idHaritasi).forEach(ozellikKey => {
+        const idSufix = idHaritasi[ozellikKey];
+        const solElement = document.getElementById(`sol-${idSufix}`);
+        const sagElement = document.getElementById(`sag-${idSufix}`);
+        if (solElement) { solElement.style.fontWeight = "normal"; solElement.style.color = ""; }
+        if (sagElement) { sagElement.style.fontWeight = "normal"; sagElement.style.color = ""; }
     });
 
-    const sagKey = Object.keys(motorVerileri).find(key => {
-        const obj = motorVerileri[key];
-        const tamAd = (obj.kimlik_bilgileri && obj.kimlik_bilgileri.tam_model_adi) ? obj.kimlik_bilgileri.tam_model_adi.toLowerCase() : "";
-        return key.toLowerCase().trim() === sagGiris || tamAd === sagGiris;
-    });
-
-    // Eğer iki motor da seçilmediyse kıyaslama yapma, çık.
-    if (!solKey || !sagKey) return;
-
-    const solMotor = motorVerileri[solKey];
-    const sagMotor = motorVerileri[sagKey];
-
-    // Belirlediğimiz metrik kurallarına göre özellikleri kapıştırıyoruz
+    // Ana kıyaslama döngüsü
     Object.keys(kiyaslamaMetrikleri).forEach(ozellikKey => {
         const kural = kiyaslamaMetrikleri[ozellikKey];
-        
-        // HTML ID'lerini buluyoruz
-        let solHtmlId = `sol-${ozellikKey}`;
-        if (ozellikKey === "motor_hacmi") solHtmlId = `sol-motor-hacmi`;
-        if (ozellikKey === "islak_agirlik") solHtmlId = `sol-agirlik`;
+        const idSufix = idHaritasi[ozellikKey];
 
-        let sagHtmlId = `sag-${ozellikKey}`;
-        if (ozellikKey === "motor_hacmi") sagHtmlId = `sag-motor-hacmi`;
-        if (ozellikKey === "islak_agirlik") sagHtmlId = `sag-agirlik`;
-
-        const solElement = document.getElementById(solHtmlId);
-        const sagElement = document.getElementById(sagHtmlId);
+        const solElement = document.getElementById(`sol-${idSufix}`);
+        const sagElement = document.getElementById(`sag-${idSufix}`);
 
         if (solElement && sagElement) {
-            // Metinlerin içindeki sayısal değerleri cımbızlıyoruz (Örn: "198 kg" -> 198, "4.2 lt" -> 4.2)
-            const solSayi = parseFloat(solElement.innerText.replace(/[^0-9.,]/g, '').replace(',', '.'));
-            const sagSayi = parseFloat(sagElement.innerText.replace(/[^0-9.,]/g, '').replace(',', '.'));
+            
+            // 🚥 TEKNOLOJİK DONANIM KIYASLAMASI (Var/Yok)
+            if (kural.tip === "teknoloji") {
+                const solVarMi = solElement.innerHTML.includes("Var ✅");
+                const sagVarMi = sagElement.innerHTML.includes("Var ✅");
 
-            // Eğer iki değer de geçerli bir sayıysa kıyaslamaya geç
+                if (solVarMi && !sagVarMi) {
+                    solElement.style.setProperty("font-weight", "900", "important");
+                    solElement.style.setProperty("color", "#00ff88", "important");
+                } else if (!solVarMi && sagVarMi) {
+                    sagElement.style.setProperty("font-weight", "900", "important");
+                    sagElement.style.setProperty("color", "#00ff88", "important");
+                }
+                return;
+            }
+
+            // 🔢 SAYISAL VERİ KIYASLAMASI (Yakıt Tüketimi, Beygir vs.)
+            const solTemiz = solElement.innerText.replace(/[^0-9.,]/g, '').replace(',', '.');
+            const sagTemiz = sagElement.innerText.replace(/[^0-9.,]/g, '').replace(',', '.');
+
+            const solSayi = parseFloat(solTemiz);
+            const sagSayi = parseFloat(sagTemiz);
+
             if (!isNaN(solSayi) && !isNaN(sagSayi)) {
-                
-                // Önce eski kalınlıkları sıfırla
-                solElement.style.fontWeight = "normal";
-                sagElement.style.fontWeight = "normal";
-                solElement.style.color = "";
-                sagElement.style.color = "";
+                if (solSayi === sagSayi) return;
 
-                if (solSayi === sagSayi) return; // Eşitlerse ellemene gerek yok abi
-
-                // Kazanma durumu kontrolü
                 let solKazandi = false;
                 if (kural.yuksek_iyi) {
                     solKazandi = solSayi > sagSayi;
                 } else {
-                    solKazandi = solSayi < sagSayi; // Düşük olan iyiyse (Ağırlık vb.)
+                    solKazandi = solSayi < sagSayi; // Az olan iyi (Örn: Tüketimler)
                 }
 
-                // Kazananı class ile işaretle
                 if (solKazandi) {
-                    solElement.classList.add("kazanan-ozellik");
-                    sagElement.classList.remove("kazanan-ozellik");
+                    solElement.style.setProperty("font-weight", "900", "important");
+                    solElement.style.setProperty("color", "#00ff88", "important");
                 } else {
-                    sagElement.classList.add("kazanan-ozellik");
-                    solElement.classList.remove("kazanan-ozellik");
+                    sagElement.style.setProperty("font-weight", "900", "important");
+                    sagElement.style.setProperty("color", "#00ff88", "important");
                 }
             }
         }
     });
 }
 
-
-// Ortak fonksiyon: Özellikleri, Resimleri ve Profesyonel İsimleri ekrana basar veya temizler
+// =======================================================
+// 🔄 EKRAN GÜNCELLEME ORTAK FONKSİYONU
+// =======================================================
 function ozellikleriGuncelle(yon, veri = null, profesyonelIsim = "") {
     const isimElementi = (yon === 'sol') ? solIsimElementi : sagIsimElementi;
+    const resimElementi = (yon === 'sol') ? solResimElementi : sagResimElementi;
 
     if (veri) {
         katmanliVerileriEkranaBas(yon, veri);
         
-        if (isimElementi && profesyonelIsim) {
+        if (isimElementi) {
             const tamAd = (veri.kimlik_bilgileri && veri.kimlik_bilgileri.tam_model_adi) 
                           ? veri.kimlik_bilgileri.tam_model_adi 
                           : profesyonelIsim;
@@ -201,291 +245,131 @@ function ozellikleriGuncelle(yon, veri = null, profesyonelIsim = "") {
         
         if (resimListesi && resimListesi.length > 0) {
             const aktifIndeks = (yon === 'sol') ? solAktifIndeks : sagAktifIndeks;
-            if (yon === 'sol') {
-                solResimElementi.src = resimListesi[aktifIndeks % resimListesi.length];
-            } else {
-                sagResimElementi.src = resimListesi[aktifIndeks % resimListesi.length];
-            }
+            resimElementi.src = resimListesi[aktifIndeks % resimListesi.length];
         } else {
-            if (yon === 'sol') solResimElementi.src = "https://placehold.co/600x400?text=Görsel+Yok";
-            else sagResimElementi.src = "https://placehold.co/600x400?text=Görsel+Yok";
+            resimElementi.src = "https://placehold.co/600x400?text=Görsel+Yok";
         }
 
-        // 🔥 Her veri güncellendiğinde iki kutu da dolu mu diye bak, doluysa kıyasla!
         motorlariKiyasla();
 
     } else {
-        // --- Temizleme Modu ---
+        // Temizleme modu
         const tumContentAlanlari = document.querySelectorAll(`[id^="${yon}-"]`);
         tumContentAlanlari.forEach(el => {
-            if (el.classList.contains('content') || el.id.includes('hacmi') || el.id.includes('agirlik')) {
-                el.innerText = "-";
-                el.style.fontWeight = "normal";
-                el.style.color = "";
-            }
+            el.innerText = "-";
+            el.style.fontWeight = "normal";
+            el.style.color = "";
         });
         
         if (isimElementi) isimElementi.innerText = "-";
-        if (yon === 'sol') solResimElementi.src = ""; else sagResimElementi.src = "";
+        if (resimElementi) resimElementi.src = "";
 
-        // Bir taraf silindiyse diğer tarafın kalan kalınlık stillerini de sıfırla
-        const karsiYon = (yon === 'sol') ? 'sag' : 'sol';
-        const karsiAlanlar = document.querySelectorAll(`[id^="${karsiYon}-"]`);
-        karsiAlanlar.forEach(el => { el.style.fontWeight = "normal"; el.style.color = ""; });
+        motorlariKiyasla();
     }
 }
 
-// --- GALERİ RESİM GÜNCELLEME MOTORLARI ---
-function solGaleriGuncelle() {
-    const girilenYazi = solInput.value.toLowerCase().trim();
-    const orijinalIsim = Object.keys(motorVerileri).find(key => key.toLowerCase().trim() === girilenYazi);
+// --- GALERİ DETAYLARI ---
+function galeriYenile(yon) {
+    const girdi = (yon === 'sol') ? solInput : sagInput;
+    const girilenYazi = girdi.value.toLowerCase().trim();
+    const orijinalIsim = Object.keys(motorVerileri).find(key => {
+        const obj = motorVerileri[key];
+        const tamAd = (obj.kimlik_bilgileri && obj.kimlik_bilgileri.tam_model_adi) ? obj.kimlik_bilgileri.tam_model_adi.toLowerCase() : "";
+        return key.toLowerCase().trim() === girilenYazi || tamAd === girilenYazi;
+    });
     
     if (orijinalIsim && motorVerileri[orijinalIsim]) {
         const veri = motorVerileri[orijinalIsim];
         const resimListesi = (veri.medya_icerik && veri.medya_icerik.galeri) ? veri.medya_icerik.galeri : (veri.resimler || []);
-        if (resimListesi && resimListesi.length > 0) {
-            solResimElementi.src = resimListesi[solAktifIndeks % resimListesi.length];
+        const aktifIndeks = (yon === 'sol') ? solAktifIndeks : sagAktifIndeks;
+        const resimElementi = (yon === 'sol') ? solResimElementi : sagResimElementi;
+        if (resimListesi.length > 0) {
+            resimElementi.src = resimListesi[aktifIndeks % resimListesi.length];
         }
     }
 }
 
-function sagGaleriGuncelle() {
-    const girilenYazi = sagInput.value.toLowerCase().trim();
-    const orijinalIsim = Object.keys(motorVerileri).find(key => key.toLowerCase().trim() === girilenYazi);
-    
-    if (orijinalIsim && motorVerileri[orijinalIsim]) {
-        const veri = motorVerileri[orijinalIsim];
-        const resimListesi = (veri.medya_icerik && veri.medya_icerik.galeri) ? veri.medya_icerik.galeri : (veri.resimler || []);
-        if (resimListesi && resimListesi.length > 0) {
-            sagResimElementi.src = resimListesi[sagAktifIndeks % resimListesi.length];
+// 4. ADIM: İNPUT DİNLEYİCİLERİ VE ÖNERİ KUTULARI (HİBRİT YAPI)
+[
+    { yon: 'sol', input: solInput, kutu: solOneriKutusu },
+    { yon: 'sag', input: sagInput, kutu: sagOneriKutusu }
+].forEach(taraf => {
+    taraf.input.addEventListener('input', () => {
+        const secilenMotor = taraf.input.value.toLowerCase().trim();
+        taraf.kutu.innerHTML = ""; 
+
+        if (secilenMotor === "") {
+            if (taraf.yon === 'sol') solAktifIndeks = 0; else sagAktifIndeks = 0;
+            ozellikleriGuncelle(taraf.yon);
+            return;
         }
-    }
-}
 
-// ==========================================
-// 4. ADIM: SOL İNPUT VE KLAVYE DİNLEYİCİLERİ
-// ==========================================
-solInput.addEventListener('input', () => {
-    const secilenMotor = solInput.value.toLowerCase().trim();
-    solOneriKutusu.innerHTML = ""; 
-
-    if (secilenMotor === "") {
-        solAktifIndeks = 0; 
-        ozellikleriGuncelle('sol');
-        return;
-    }
-
-    Object.keys(motorVerileri).forEach(motorAdi => {
-        if (motorAdi.toLowerCase().trim().includes(secilenMotor)) {
-            const oneriElemani = document.createElement('div');
+        Object.keys(motorVerileri).forEach(motorAdi => {
             const motorObjesi = motorVerileri[motorAdi];
             const gorunurAd = (motorObjesi.kimlik_bilgileri && motorObjesi.kimlik_bilgileri.tam_model_adi) 
                                ? motorObjesi.kimlik_bilgileri.tam_model_adi 
                                : motorAdi;
             
-            oneriElemani.innerText = gorunurAd; 
-            oneriElemani.style.padding = "10px";
-            oneriElemani.style.cursor = "pointer";
-            oneriElemani.classList.add('oneri-satiri');
-            
-            oneriElemani.addEventListener('mouseenter', () => {
-                solAktifIndeks = 0; 
-                ozellikleriGuncelle('sol', motorVerileri[motorAdi], motorAdi);
-            });
+            if (motorAdi.toLowerCase().trim().includes(secilenMotor) || gorunurAd.toLowerCase().trim().includes(secilenMotor)) {
+                const oneriElemani = document.createElement('div');
+                oneriElemani.innerText = gorunurAd; 
+                oneriElemani.style.padding = "10px";
+                oneriElemani.style.cursor = "pointer";
+                oneriElemani.classList.add('oneri-satiri');
+                
+                oneriElemani.addEventListener('mouseenter', () => {
+                    ozellikleriGuncelle(taraf.yon, motorVerileri[motorAdi], motorAdi);
+                });
 
-            oneriElemani.addEventListener('mouseleave', () => {
-                const mevcutGiris = solInput.value.toLowerCase().trim();
-                if (mevcutGiris !== motorAdi.toLowerCase().trim() && mevcutGiris !== gorunurAd.toLowerCase().trim()) {
-                    solAktifIndeks = 0;
-                    ozellikleriGuncelle('sol');
-                }
-            });
+                oneriElemani.addEventListener('click', () => {
+                    taraf.input.value = gorunurAd; 
+                    taraf.kutu.innerHTML = ""; 
+                    ozellikleriGuncelle(taraf.yon, motorVerileri[motorAdi], motorAdi);
+                });
 
-            oneriElemani.addEventListener('click', () => {
-                solInput.value = gorunurAd; 
-                solOneriKutusu.innerHTML = ""; 
-                solAktifIndeks = 0; 
-                ozellikleriGuncelle('sol', motorVerileri[motorAdi], motorAdi);
-            });
+                taraf.kutu.appendChild(oneriElemani);
+            }
+        });
+    });
 
-            solOneriKutusu.appendChild(oneriElemani);
+    taraf.input.addEventListener('keydown', (event) => {
+        if (event.key === "Enter" || event.key === "Tab") {
+            const ilkOneri = taraf.kutu.querySelector('div');
+            if (ilkOneri) {
+                event.preventDefault();
+                ilkOneri.click(); 
+            }
         }
     });
 });
 
-solInput.addEventListener('keydown', (event) => {
-    if (event.key === "Enter" || event.key === "Tab") {
-        const ilkOneri = solOneriKutusu.querySelector('div');
-        if (ilkOneri) {
-            event.preventDefault();
-            ilkOneri.click(); 
-        }
+// 5. ADIM: BUTON GALERİ TETİKLEYİCİLERİ
+document.querySelector(".btn-left").addEventListener("click", () => {
+    solAktifIndeks = (solAktifIndeks - 1 + 100) % 100; // Güvenli geri sarma
+    galeriYenile('sol');
+});
+document.querySelector(".btn-right").addEventListener("click", () => {
+    solAktifIndeks++;
+    galeriYenile('sol');
+});
+
+// Sağ butonları tam hedefleme
+const sagButonlar = document.querySelectorAll(".img-r button");
+if(sagButonlar.length >= 2) {
+    sagButonlar[0].addEventListener("click", () => { sagAktifIndeks = (sagAktifIndeks - 1 + 100) % 100; galeriYenile('sag'); });
+    sagButonlar[1].addEventListener("click", () => { sagAktifIndeks++; galeriYenile('sag'); });
+}
+
+// 6. ADIM: LIGHTBOX
+[solResimElementi, sagResimElementi].forEach(img => {
+    if(img) {
+        img.addEventListener("click", () => {
+            if (img.src && !img.src.includes("placehold.co")) {
+                lightbox.style.display = "flex";
+                lightboxImg.src = img.src;
+            }
+        });
     }
 });
-
-// ==========================================
-// 5. ADIM: SAĞ İNPUT VE KLAVYE DİNLEYİCİLERİ
-// ==========================================
-sagInput.addEventListener('input', () => {
-    const secilenMotor = sagInput.value.toLowerCase().trim();
-    sagOneriKutusu.innerHTML = ""; 
-
-    if (secilenMotor === "") {
-        sagAktifIndeks = 0; 
-        ozellikleriGuncelle('sag');
-        return;
-    }
-
-    Object.keys(motorVerileri).forEach(motorAdi => {
-        if (motorAdi.toLowerCase().trim().includes(secilenMotor)) {
-            const oneriElemani = document.createElement('div');
-            const motorObjesi = motorVerileri[motorAdi];
-            const gorunurAd = (motorObjesi.kimlik_bilgileri && motorObjesi.kimlik_bilgileri.tam_model_adi) 
-                               ? motorObjesi.kimlik_bilgileri.tam_model_adi 
-                               : motorAdi;
-            
-            oneriElemani.innerText = gorunurAd;
-            oneriElemani.style.padding = "10px";
-            oneriElemani.style.cursor = "pointer";
-            oneriElemani.classList.add('oneri-satiri');
-
-            oneriElemani.addEventListener('mouseenter', () => {
-                sagAktifIndeks = 0;
-                ozellikleriGuncelle('sag', motorVerileri[motorAdi], motorAdi);
-            });
-
-            oneriElemani.addEventListener('mouseleave', () => {
-                const mevcutGiris = sagInput.value.toLowerCase().trim();
-                if (mevcutGiris !== motorAdi.toLowerCase().trim() && mevcutGiris !== gorunurAd.toLowerCase().trim()) {
-                    sagAktifIndeks = 0;
-                    ozellikleriGuncelle('sag');
-                }
-            });
-
-            oneriElemani.addEventListener('click', () => {
-                sagInput.value = gorunurAd;
-                sagOneriKutusu.innerHTML = ""; 
-                sagAktifIndeks = 0; 
-                ozellikleriGuncelle('sag', motorVerileri[motorAdi], motorAdi);
-            });
-
-            sagOneriKutusu.appendChild(oneriElemani);
-        }
-    });
-});
-
-sagInput.addEventListener('keydown', (event) => {
-    if (event.key === "Enter" || event.key === "Tab") {
-        const ilkOneri = sagOneriKutusu.querySelector('div');
-        if (ilkOneri) {
-            event.preventDefault();
-            ilkOneri.click(); 
-        }
-    }
-});
-
-// ==========================================
-// 6. ADIM: SAĞ-SOL OK BUTONLARINA BAĞLANMA MOTORU
-// ==========================================
-const solKutuButonlari = document.querySelector(".img").querySelectorAll("button");
-const solGeriBtn = solKutuButonlari[0]; 
-const solIleriBtn = solKutuButonlari[1]; 
-
-solIleriBtn.addEventListener("click", () => {
-    const girilenYazi = solInput.value.toLowerCase().trim();
-    const orijinalIsim = Object.keys(motorVerileri).find(key => {
-        const obj = motorVerileri[key];
-        const tamAd = (obj.kimlik_bilgileri && obj.kimlik_bilgileri.tam_model_adi) ? obj.kimlik_bilgileri.tam_model_adi.toLowerCase() : "";
-        return key.toLowerCase().trim() === girilenYazi || tamAd === girilenYazi;
-    });
-    if (!orijinalIsim || !motorVerileri[orijinalIsim]) return;
-    
-    const veri = motorVerileri[orijinalIsim];
-    const resimListesi = (veri.medya_icerik && veri.medya_icerik.galeri) ? veri.medya_icerik.galeri : (veri.resimler || []);
-    if (resimListesi.length === 0) return;
-
-    solAktifIndeks = (solAktifIndeks + 1) % resimListesi.length; 
-    solGaleriGuncelle();
-});
-
-solGeriBtn.addEventListener("click", () => {
-    const girilenYazi = solInput.value.toLowerCase().trim();
-    const orijinalIsim = Object.keys(motorVerileri).find(key => {
-        const obj = motorVerileri[key];
-        const tamAd = (obj.kimlik_bilgileri && obj.kimlik_bilgileri.tam_model_adi) ? obj.kimlik_bilgileri.tam_model_adi.toLowerCase() : "";
-        return key.toLowerCase().trim() === girilenYazi || tamAd === girilenYazi;
-    });
-    if (!orijinalIsim || !motorVerileri[orijinalIsim]) return;
-    
-    const veri = motorVerileri[orijinalIsim];
-    const resimListesi = (veri.medya_icerik && veri.medya_icerik.galeri) ? veri.medya_icerik.galeri : (veri.resimler || []);
-    if (resimListesi.length === 0) return;
-
-    solAktifIndeks = (solAktifIndeks - 1 + resimListesi.length) % resimListesi.length; 
-    solGaleriGuncelle();
-});
-
-const sagKutuButonlari = document.querySelector(".img-r").querySelectorAll("button");
-const sagGeriBtn = sagKutuButonlari[0]; 
-const sagIleriBtn = sagKutuButonlari[1]; 
-
-sagIleriBtn.addEventListener("click", () => {
-    const girilenYazi = sagInput.value.toLowerCase().trim();
-    const orijinalIsim = Object.keys(motorVerileri).find(key => {
-        const obj = motorVerileri[key];
-        const tamAd = (obj.kimlik_bilgileri && obj.kimlik_bilgileri.tam_model_adi) ? obj.kimlik_bilgileri.tam_model_adi.toLowerCase() : "";
-        return key.toLowerCase().trim() === girilenYazi || tamAd === girilenYazi;
-    });
-    if (!orijinalIsim || !motorVerileri[orijinalIsim]) return;
-    
-    const veri = motorVerileri[orijinalIsim];
-    const resimListesi = (veri.medya_icerik && veri.medya_icerik.galeri) ? veri.medya_icerik.galeri : (veri.resimler || []);
-    if (resimListesi.length === 0) return;
-
-    sagAktifIndeks = (sagAktifIndeks + 1) % resimListesi.length;
-    sagGaleriGuncelle();
-});
-
-sagGeriBtn.addEventListener("click", () => {
-    const girilenYazi = sagInput.value.toLowerCase().trim();
-    const orijinalIsim = Object.keys(motorVerileri).find(key => {
-        const obj = motorVerileri[key];
-        const tamAd = (obj.kimlik_bilgileri && obj.kimlik_bilgileri.tam_model_adi) ? obj.kimlik_bilgileri.tam_model_adi.toLowerCase() : "";
-        return key.toLowerCase().trim() === girilenYazi || tamAd === girilenYazi;
-    });
-    if (!orijinalIsim || !motorVerileri[orijinalIsim]) return;
-    
-    const veri = motorVerileri[orijinalIsim];
-    const resimListesi = (veri.medya_icerik && veri.medya_icerik.galeri) ? veri.medya_icerik.galeri : (veri.resimler || []);
-    if (resimListesi.length === 0) return;
-
-    sagAktifIndeks = (sagAktifIndeks - 1 + resimListesi.length) % resimListesi.length;
-    sagGaleriGuncelle();
-});
-
-// ==========================================
-// 7. ADIM: LIGHTBOX MOTORU
-// ==========================================
-solResimElementi.addEventListener("click", () => {
-    if (solResimElementi.src && solResimElementi.src !== window.location.href && !solResimElementi.src.includes("placehold.co")) {
-        lightbox.style.display = "flex";
-        lightboxImg.src = solResimElementi.src; 
-    }
-});
-
-sagResimElementi.addEventListener("click", () => {
-    if (sagResimElementi.src && sagResimElementi.src !== window.location.href && !sagResimElementi.src.includes("placehold.co")) {
-        lightbox.style.display = "flex";
-        lightboxImg.src = sagResimElementi.src; 
-    }
-});
-
-lightboxKapat.addEventListener("click", () => {
-    lightbox.style.display = "none";
-});
-
-lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) {
-        lightbox.style.display = "none";
-    }
-});
+if(lightboxKapat) lightboxKapat.addEventListener("click", () => lightbox.style.display = "none");
+if(lightbox) lightbox.addEventListener("click", (e) => { if(e.target === lightbox) lightbox.style.display = "none"; });
