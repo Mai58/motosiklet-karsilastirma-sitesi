@@ -6,15 +6,11 @@ Bu proje, iki farklı motosikleti yan yana getirerek teknik özelliklerini, dona
 
 ### 📂 Proje Gelişim Günlüğü (Versiyon Notları)
 
-- **V8 (2026-05-31):**
-  - **Dinamik ve Akıllı Kıyaslama Motoru:** İki motor seçildiğinde özellikler anında kapıştırılır. Sayısal veriler (Beygir, tork vb.) otomatik ayıklanır; kazanan özellik kalın fontla öne çıkarılır.
-  - **Katmanlı JSON & Döngü Mimarisi:** Satır satır HTML yazma hamallığı bitti. JSON'daki iç içe (nested) tüm teknik özellikler dinamik bir döngüyle HTML ID'leri üzerinden otomatik eşleştirilerek ekrana basılır.
-  - **Boolean Donanım Görselleştirmesi:** Elektronik ve güvenlik özelliklerindeki `true` / `false` verileri ekranda otomatik olarak "Var ✅" / "Yok ❌" şeklinde şık birer görsel kritere dönüştürülür.
-  - **Gelişmiş Arama ve Temizleme Modu:** Girdi alanları temizlendiğinde veya eşleşme bozulduğunda tüm hücreler, stiller ve görseller otomatik olarak sıfırlanır.
-
-- **V7 (2026-05-09):**
-  - Resim yön tuşları (Galeri navigasyonu) eklendi.
-  - Demo resim entegrasyonu sağlandı.
+- **V9 (2026-06-01):**
+- daha fazla motor eklendi
+- motorlara resim eklendi
+- kıyaslama yaparken özelliği iyi olan motorun özelliği yeşil harflerle yazılıyor
+- site logosu eklendi
 
 ---
 
@@ -38,9 +34,9 @@ Bu proje, iki farklı motosikleti yan yana getirerek teknik özelliklerini, dona
 
 ### 🎯 Gelecek Hedefler (To-Do)
 
-- [ ] **Dinamik URL & Dynamic Routing (?sol=h2r&sag=r1):** Kullanıcıların yaptıkları karşılaştırmaları direkt link olarak paylaşabilmesi ve Google botlarının bu kombinasyonları indeksleyebilmesi için URL parametre okuyucu entegre edilecek.
-- [ ] **SEO & Sitemap Entegrasyonu:** `sitemap.xml` ile popüler motor kombinasyonlarının Google aramalarında (Örn: "R25 vs Ninja 250") doğrudan listelenmesi sağlanacak.
-- [ ] Çoklu resimler arası geçiş ve detaylı inceleme modu optimize edilecek.
+- daha fazla motor eklenecek.
+- site yayınlanmaya hazır hale getirilecek.
+
 
 ---
 
