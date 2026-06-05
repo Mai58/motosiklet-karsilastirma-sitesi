@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>Otom - Motosiklet Karşılaştırma Sitesi</title>
+</head>
+<body>
+    <div class="main-container">
+        
+        <div class="left-side">
+            <div class="motor-kolon">
+                <input id="left" type="text" placeholder="Sol Motoru Ara..." autocomplete="off">
+                <div id="sol-oneriler"></div>
+            </div>
+            <div class="img-box">
+                <div class="img">
+                    <button class="btn-left"><</button>
+                    <img id="resim-sol" src="" alt="">
+                    <button class="btn-right">></button>
+                </div>
+                <div class="sol-motor-ad" id="sol-motor-adi" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;"></div>
+            </div>
+            
+            <div class="features">
+                
+                <div class="katman-grup">
+                    <div class="katman-baslik">Model ve Üretici Kimliği</div>
+                    <div class="features-row"><div class="topic">Marka</div><div id="sol-marka" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Model</div><div id="sol-model" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Tam Model Adı</div><div id="sol-tam_model_adi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Sürüm / Versiyon</div><div id="sol-versiyon" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Sınıf / Segment</div><div id="sol-segment" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Üretim Durumu</div><div id="sol-uretim_durumu" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Menşei Ülke</div><div id="sol-ulke" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Güç, Hız ve Performans Verileri</div>
+                    <div class="features-row"><div class="topic">Maksimum Hız</div><div id="sol-max_hiz" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">0-100 km/h Hızlanma</div><div id="sol-hizlanma_0_100" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">80-120 km/h Hızlanma</div><div id="sol-80_120_hizlanma" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">100-200 km/h Hızlanma</div><div id="sol-100_200_hizlanma" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Test Edilen Son Hız</div><div id="sol-son_hiz_test" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Güç / Ağırlık Oranı</div><div id="sol-guc_agirlik_orani" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Tork / Ağırlık Oranı</div><div id="sol-tork_agirlik_orani" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yaklaşık Piyasa Fiyatı</div><div id="sol-yaklasik_fiyat" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Sürücü Profil ve Yol Uyum Kartı</div>
+                    <div class="features-row"><div class="topic">Gerekli Ehliyet Sınıfı</div><div id="sol-ehliyet_seviyesi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Araziye Uygunluk (Off-Road)</div><div id="sol-offroad_uygun" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Uzun Yol ve Tur Uyumluluğu</div><div id="sol-uzun_yol_uygun" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Şehir İçi Kullanım Kolaylığı</div><div id="sol-sehir_ici_uygun" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Kısa Boylu Sürücüye Uygunluk</div><div id="sol-boy_kisa_surucu_uygun" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Motor Bloku ve Mekanik Detaylar</div>
+                    <div class="features-row"><div class="topic">Silindir Hacmi</div><div id="sol-motor-hacmi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Net Beygir Gücü</div><div id="sol-beygir_gucu_hp" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Maksimum Güç Devri</div><div id="sol-guc_devri_rpm" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Maksimum Tork</div><div id="sol-maks_tork_nm" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Maksimum Tork Devri</div><div id="sol-tork_devri_rpm" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Üretici Güç Beyanı</div><div id="sol-uretici_guc_verisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Üretici Tork Beyanı</div><div id="sol-uretici_tork_verisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Silindir Sayısı</div><div id="sol-silindir_sayisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Silindir Dizilimi</div><div id="sol-silindir_dizilimi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Motor Zamanlaması</div><div id="sol-zamanlama_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Toplam Supap (Valf) Sayısı</div><div id="sol-supap_sayisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Eksantrik Yapısı</div><div id="sol-eksantrik_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Çap x Strok</div><div id="sol-cap_strok" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Sıkıştırma Oranı</div><div id="sol-sikistirma_orani" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Soğutma Sistemi</div><div id="sol-sogutma_sistemi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yakıt Enjeksiyon Sistemi</div><div id="sol-yakit_besleme" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Gaz Kontrol Teknolojisi</div><div id="sol-gaz_kontrolu" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ateşleme Tipi</div><div id="sol-atesleme_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yağlama Yapısı</div><div id="sol-yaglama_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Egzoz Emisyon Normu</div><div id="sol-euro_standardi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">CO2 Emisyon Hacmi</div><div id="sol-co2_salinimi" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Şanzıman ve Aktarma Organları</div>
+                    <div class="features-row"><div class="topic">Vites Sayısı</div><div id="sol-vites_sayisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Şanzıman Mimarisi</div><div id="sol-sanziman_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Son Aktarma Sistemi</div><div id="sol-son_aktarma" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Debriyaj Tipi</div><div id="sol-debriyaj_yapisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Kaydırmalı Debriyaj</div><div id="sol-kaydirmali_debriyaj" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Zincir Ölçüsü (Ebat)</div><div id="sol-zincir_ebati" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Ergonomi, Gövde Ölçüleri ve Hacim</div>
+                    <div class="features-row"><div class="topic">Sürücü Sele Yüksekliği</div><div id="sol-sele_yuksekligi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yolcu Sele Yüksekliği</div><div id="sol-yolcu_sele_yuksekligi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Sele Genişliği</div><div id="sol-sele_genisligi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Islak Ağırlık (Dolu Depo)</div><div id="sol-agirlik" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Kuru Ağırlık (Sıvısız)</div><div id="sol-kuru_agirlik" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yakıt Depo Hacmi</div><div id="sol-depo_hacmi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Tahmini Maksimum Menzil</div><div id="sol-tahmini_menzil" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Toplam Uzunluk</div><div id="sol-toplam_uzunluk" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Toplam Genişlik</div><div id="sol-toplam_genislik" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Toplam Yükseklik</div><div id="sol-toplam_yukseklik" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Minimum Yerden Yükseklik</div><div id="sol-yerden_yukseklik" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Aks Mesafesi (Tekerlek Arası)</div><div id="sol-aks_mesafesi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Maksimum Taşıma Kapasitesi</div><div id="sol-tasima_kapasitesi" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Yakıt Tüketim Standartları</div>
+                    <div class="features-row"><div class="topic">Şehir İçi Yakıt Tüketimi</div><div id="sol-sehir_ici_tuketim" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Şehir Dışı Yakıt Tüketimi</div><div id="sol-sehir_disi_tuketim" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ortalama Karma Tüketim</div><div id="sol-karma_tuketim" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yıllık Tahmini Yakıt Maliyeti</div><div id="sol-yillik_tahmini_yakit_maliyeti" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Şasi, Yürüyen Aksam ve Fren Gücü</div>
+                    <div class="features-row"><div class="topic">Ön Süspansiyon Yapısı</div><div id="sol-on_suspansiyon" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Amortisör Çapı</div><div id="sol-on_suspansiyon_cap" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Süspansiyon Esneme Mesafesi</div><div id="sol-on_suspansiyon_hareket" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Amortisör Ayarlanabilirliği</div><div id="sol-on_suspansiyon_ayarlanabilirlik" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Süspansiyon Yapısı</div><div id="sol-arka_suspansiyon" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Amortisör Ayarlanabilirliği</div><div id="sol-arka_suspansiyon_ayarlanabilirlik" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Genel Süspansiyon Karakteri</div><div id="sol-suspansiyon_ayari_genel" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Fren Teknolojisi</div><div id="sol-on_fren_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Fren Disk Sayısı</div><div id="sol-on_fren_disk_sayisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Disk Çapı</div><div id="sol-on_disk_cap" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Kaliper Yapısı ve Tipi</div><div id="sol-on_kaliper_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Fren Teknolojisi</div><div id="sol-arka_fren_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Fren Disk Sayısı</div><div id="sol-arka_fren_disk_sayisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Disk Çapı</div><div id="sol-arka_disk_cap" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Kaster (Çatal) Açısı</div><div id="sol-kaster_acisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">İz Mesafesi (Trail)</div><div id="sol-iz_mesafesi" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Lastik, Jant ve Tekerlek Yapısı</div>
+                    <div class="features-row"><div class="topic">Ön Lastik Ebatı</div><div id="sol-on_lastik_ebat" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Lastik Ebatı</div><div id="sol-arka_lastik_ebat" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Jant Ölçüsü</div><div id="sol-on_jant_olcusu" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Jant Ölçüsü</div><div id="sol-arka_jant_olcusu" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Jant Gövde Malzemesi</div><div id="sol-jant_malzemesi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Lastik İç Yapısı</div><div id="sol-lastik_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Fabrika Çıkış Lastik Markası</div><div id="sol-lastik_markasi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Fabrika Çıkış Lastik Modeli</div><div id="sol-lastik_modeli" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Elektronik Sürücü Asistanları ve Güvenlik</div>
+                    <div class="features-row"><div class="topic">Fren Güvenlik Sistemi (ABS)</div><div id="sol-abs_sistemi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yatış Açısı Duyarlı Viraj ABS'si</div><div id="sol-abs_viraj_destekli" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Gelişmiş Viraj ABS Yönetimi</div><div id="sol-viraj_abs" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Çekiş Kontrol Sistemi (TCS)</div><div id="sol-cekis_kontrol" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Viraj Duyarlı Çekiş Kontrolü</div><div id="sol-viraj_cekis_kontrol" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Tekerlek Kalkış Önleme (RLC)</div><div id="sol-arka_kalkis_onleme" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Tekerlek Kontrolü (Anti-Wheelie)</div><div id="sol-wheelie_control" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Kalkış Kontrol Sistemi (Launch Control)</div><div id="sol-launch_control" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Motor Freni Kontrol Sistemi</div><div id="sol-motor_fren_kontrol" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yarı Aktif / Elektronik Süspansiyon</div><div id="sol-semi_aktif_suspansiyon" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Radar Uyarı Sistemi</div><div id="sol-radar_sistemi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Hız Sabitleme Sistemi (Cruise Control)</div><div id="sol-hiz_sabitleyici" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Adaptif Hız Sabitleyici (ACC)</div><div id="sol-adaptif_hiz_sabitleyici" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yokuş Kalkış Destek Sistemi</div><div id="sol-yokus_kalkis" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Acil Fren Sinyal Sistemi (ESS)</div><div id="sol-acil_fren_uyarisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Merkezi Algılama Beyni (IMU)</div><div id="sol-imu_sensoru" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Hazır Sürüş Modları</div><div id="sol-surus_modlari" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Hızlı Vites Değiştirici (Quickshifter)</div><div id="sol-quickshifter_tipi" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Konfor Ekipmanları ve Gösterge Paneli</div>
+                    <div class="features-row"><div class="topic">Gösterge Ekran Teknolojisi</div><div id="sol-gosterge_ekrani" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Panel Ekran Boyutu</div><div id="sol-ekran_boyutu" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Akıllı Telefon Bağlantısı</div><div id="sol-akilli_telefon_baglanti" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Aydınlatma Yapısı (Far Teknolojisi)</div><div id="sol-aydinlatma_teknolojisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Viraj Duyarlı Adaptif Aydınlatma</div><div id="sol-viraj_aydinlatma" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Anahtarsız Çalıştırma (Keyless)</div><div id="sol-anahtarsiz_calistirma" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">USB / 12V Güç Soketi</div><div id="sol-usb_soketi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Fabrika Çıkışlı Elcik Isıtma</div><div id="sol-elcik_isitma" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Fabrika Çıkışlı Koltuk Isıtma</div><div id="sol-koltuk_isitma" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Lastik Basınç Sensörü (TPMS)</div><div id="sol-lastik_basincli_sensor" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Kör Nokta Radar Uyarı Sistemi</div><div id="sol-kor_nokta_uyari" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ayarlanabilir Ön Cam (Siperlik)</div><div id="sol-ayarlanabilir_cam" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Geri Vites Modu</div><div id="sol-geri_vites" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Aerodinamik Rüzgar Koruması</div><div id="sol-ruzgar_koruma_seviyesi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Orijinal Yan Çanta Desteği</div><div id="sol-yan_canta_destegi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Orijinal Arka (Üst) Çanta Desteği</div><div id="sol-ust_canta_destegi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Merkez Park Standı (Orta Sehpa)</div><div id="sol-orta_sehpa" class="content">-</div></div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="right-side">
+            <div class="motor-kolon">
+                <input id="right" type="text" placeholder="Sağ Motoru Ara..." autocomplete="off">
+                <div id="sag-oneriler"></div>
+            </div>
+            <div class="img-box">
+                <div class="sag-motor-ad" id="sag-motor-adi"></div>
+                <div class="img-r">
+                    <button class="btn-left"><</button>
+                    <img id="resim-sag" src="" alt="">
+                    <button class="btn-right">></button>
+                </div>
+            </div>
+            
+            <div class="features">
+                
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Model ve Üretici Kimliği</div>
+                    <div class="features-row"><div class="topic">Marka</div><div id="sag-marka" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Model</div><div id="sag-model" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Tam Model Adı</div><div id="sag-tam_model_adi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Sürüm / Versiyon</div><div id="sag-versiyon" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Sınıf / Segment</div><div id="sag-segment" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Üretim Durumu</div><div id="sag-uretim_durumu" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Menşei Ülke</div><div id="sag-ulke" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Güç, Hız ve Performans Verileri</div>
+                    <div class="features-row"><div class="topic">Maksimum Hız</div><div id="sag-max_hiz" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">0-100 km/h Hızlanma</div><div id="sag-hizlanma_0_100" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">80-120 km/h Hızlanma</div><div id="sag-80_120_hizlanma" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">100-200 km/h Hızlanma</div><div id="sag-100_200_hizlanma" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Test Edilen Son Hız</div><div id="sag-son_hiz_test" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Güç / Ağırlık Oranı</div><div id="sag-guc_agirlik_orani" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Tork / Ağırlık Oranı</div><div id="sag-tork_agirlik_orani" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yaklaşık Piyasa Fiyatı</div><div id="sag-yaklasik_fiyat" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Sürücü Profil ve Yol Uyum Kartı</div>
+                    <div class="features-row"><div class="topic">Gerekli Ehliyet Sınıfı</div><div id="sag-ehliyet_seviyesi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Araziye Uygunluk (Off-Road)</div><div id="sag-offroad_uygun" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Uzun Yol ve Tur Uyumluluğu</div><div id="sag-uzun_yol_uygun" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Şehir İçi Kullanım Kolaylığı</div><div id="sag-sehir_ici_uygun" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Kısa Boylu Sürücüye Uygunluk</div><div id="sag-boy_kisa_surucu_uygun" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Motor Bloku ve Mekanik Detaylar</div>
+                    <div class="features-row"><div class="topic">Silindir Hacmi</div><div id="sag-motor-hacmi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Net Beygir Gücü</div><div id="sag-beygir_gucu_hp" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Maksimum Güç Devri</div><div id="sag-guc_devri_rpm" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Maksimum Tork</div><div id="sag-maks_tork_nm" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Maksimum Tork Devri</div><div id="sag-tork_devri_rpm" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Üretici Güç Beyanı</div><div id="sag-uretici_guc_verisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Üretici Tork Beyanı</div><div id="sag-uretici_tork_verisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Silindir Sayısı</div><div id="sag-silindir_sayisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Silindir Dizilimi</div><div id="sag-silindir_dizilimi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Motor Zamanlaması</div><div id="sag-zamanlama_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Toplam Supap (Valf) Sayısı</div><div id="sag-supap_sayisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Eksantrik Yapısı</div><div id="sag-eksantrik_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Çap x Strok</div><div id="sag-cap_strok" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Sıkıştırma Oranı</div><div id="sag-sikistirma_orani" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Soğutma Sistemi</div><div id="sag-sogutma_sistemi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yakıt Enjeksiyon Sistemi</div><div id="sag-yakit_besleme" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Gaz Kontrol Teknolojisi</div><div id="sag-gaz_kontrolu" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ateşleme Tipi</div><div id="sag-atesleme_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yağlama Yapısı</div><div id="sag-yaglama_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Egzoz Emisyon Normu</div><div id="sag-euro_standardi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">CO2 Emisyon Hacmi</div><div id="sag-co2_salinimi" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Şanzıman ve Aktarma Organları</div>
+                    <div class="features-row"><div class="topic">Vites Sayısı</div><div id="sag-vites_sayisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Şanzıman Mimarisi</div><div id="sag-sanziman_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Son Aktarma Sistemi</div><div id="sag-son_aktarma" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Debriyaj Tipi</div><div id="sag-debriyaj_yapisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Kaydırmalı Debriyaj</div><div id="sag-kaydirmali_debriyaj" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Zincir Ölçüsü (Ebat)</div><div id="sag-zincir_ebati" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Ergonomi, Gövde Ölçüleri Nicelikleri</div>
+                    <div class="features-row"><div class="topic">Sürücü Sele Yüksekliği</div><div id="sag-sele_yuksekligi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yolcu Sele Yüksekliği</div><div id="sag-yolcu_sele_yuksekligi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Sele Genişliği</div><div id="sag-sele_genisligi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Islak Ağırlık (Dolu Depo)</div><div id="sag-agirlik" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Kuru Ağırlık (Sıvısız)</div><div id="sag-kuru_agirlik" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yakıt Depo Hacmi</div><div id="sag-depo_hacmi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Tahmini Maksimum Menzil</div><div id="sag-tahmini_menzil" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Toplam Uzunluk</div><div id="sag-toplam_uzunluk" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Toplam Genişlik</div><div id="sag-toplam_genislik" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Toplam Yükseklik</div><div id="sag-toplam_yukseklik" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Minimum Yerden Yükseklik</div><div id="sag-yerden_yukseklik" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Aks Mesafesi (Tekerlek Arası)</div><div id="sag-aks_mesafesi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Maksimum Taşıma Kapasitesi</div><div id="sag-tasima_kapasitesi" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Yakıt Tüketim Standartları</div>
+                    <div class="features-row"><div class="topic">Şehir İçi Yakıt Tüketimi</div><div id="sag-sehir_ici_tuketim" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Şehir Dışı Yakıt Tüketimi</div><div id="sag-sehir_disi_tuketim" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ortalama Karma Tüketim</div><div id="sag-karma_tuketim" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yıllık Tahmini Yakıt Maliyeti</div><div id="sag-yillik_tahmini_yakit_maliyeti" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Şasi, Yürüyen Aksam ve Fren Gücü</div>
+                    <div class="features-row"><div class="topic">Ön Süspansiyon Yapısı</div><div id="sag-on_suspansiyon" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Amortisör Çapı</div><div id="sag-on_suspansiyon_cap" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Süspansiyon Esneme Mesafesi</div><div id="sag-on_suspansiyon_hareket" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Amortisör Ayarlanabilirliği</div><div id="sag-on_suspansiyon_ayarlanabilirlik" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Süspansiyon Yapısı</div><div id="sag-arka_suspansiyon" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Amortisör Ayarlanabilirliği</div><div id="sag-arka_suspansiyon_ayarlanabilirlik" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Genel Süspansiyon Karakteri</div><div id="sag-suspansiyon_ayari_genel" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Fren Teknolojisi</div><div id="sag-on_fren_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Fren Disk Sayısı</div><div id="sag-on_fren_disk_sayisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Disk Çapı</div><div id="sag-on_disk_cap" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Kaliper Yapısı ve Tipi</div><div id="sag-on_kaliper_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Fren Teknolojisi</div><div id="sag-arka_fren_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Fren Disk Sayısı</div><div id="sag-arka_fren_disk_sayisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Disk Çapı</div><div id="sag-arka_disk_cap" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Kaster (Çatal) Açısı</div><div id="sag-kaster_acisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">İz Mesafesi (Trail)</div><div id="sag-iz_mesafesi" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Lastik, Jant ve Tekerlek Yapısı</div>
+                    <div class="features-row"><div class="topic">Ön Lastik Ebatı</div><div id="sag-on_lastik_ebat" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Lastik Ebatı</div><div id="sag-arka_lastik_ebat" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Jant Ölçüsü</div><div id="sag-on_jant_olcusu" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Jant Ölçüsü</div><div id="sag-arka_jant_olcusu" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Jant Gövde Malzemesi</div><div id="sag-jant_malzemesi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Lastik İç Yapısı</div><div id="sag-lastik_tipi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Fabrika Çıkış Lastik Markası</div><div id="sag-lastik_markasi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Fabrika Çıkış Lastik Modeli</div><div id="sag-lastik_modeli" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Elektronik Sürücü Asistanları ve Güvenlik</div>
+                    <div class="features-row"><div class="topic">Fren Güvenlik Sistemi (ABS)</div><div id="sag-abs_sistemi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yatış Açısı Duyarlı Viraj ABS'si</div><div id="sag-abs_viraj_destekli" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Gelişmiş Viraj ABS Yönetimi</div><div id="sag-viraj_abs" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Çekiş Kontrol Sistemi (TCS)</div><div id="sag-cekis_kontrol" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Viraj Duyarlı Çekiş Kontrolü</div><div id="sag-viraj_cekis_kontrol" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Arka Tekerlek Kalkış Önleme (RLC)</div><div id="sag-arka_kalkis_onleme" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ön Tekerlek Kontrolü (Anti-Wheelie)</div><div id="sag-wheelie_control" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Kalkış Kontrol Sistemi (Launch Control)</div><div id="sag-launch_control" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Motor Freni Kontrol Sistemi</div><div id="sag-motor_fren_kontrol" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yarı Aktif / Elektronik Süspansiyon</div><div id="sag-semi_aktif_suspansiyon" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Radar Uyarı Sistemi</div><div id="sag-radar_sistemi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Hız Sabitleme Sistemi (Cruise Control)</div><div id="sag-hiz_sabitleyici" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Adaptif Hız Sabitleyici (ACC)</div><div id="sag-adaptif_hiz_sabitleyici" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Yokuş Kalkış Destek Sistemi</div><div id="sag-yokus_kalkis" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Acil Fren Sinyal Sistemi (ESS)</div><div id="sag-acil_fren_uyarisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Merkezi Algılama Beyni (IMU)</div><div id="sag-imu_sensoru" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Hazır Sürüş Modları</div><div id="sag-surus_modlari" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Hızlı Vites Değiştirici (Quickshifter)</div><div id="sag-quickshifter_tipi" class="content">-</div></div>
+                </div>
+
+                <div class="katman-grup">
+                    <div class="katman-baslik"> Konfor Ekipmanları ve Gösterge Paneli</div>
+                    <div class="features-row"><div class="topic">Gösterge Ekran Teknolojisi</div><div id="sag-gosterge_ekrani" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Panel Ekran Boyutu</div><div id="sag-ekran_boyutu" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Akıllı Telefon Bağlantısı</div><div id="sag-akilli_telefon_baglanti" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Aydınlatma Yapısı (Far Teknolojisi)</div><div id="sag-aydinlatma_teknolojisi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Viraj Duyarlı Adaptif Aydınlatma</div><div id="sag-viraj_aydinlatma" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Anahtarsız Çalıştırma (Keyless)</div><div id="sag-anahtarsiz_calistirma" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">USB / 12V Güç Soketi</div><div id="sag-usb_soketi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Fabrika Çıkışlı Elcik Isıtma</div><div id="sag-elcik_isitma" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Fabrika Çıkışlı Koltuk Isıtma</div><div id="sag-koltuk_isitma" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Lastik Basınç Sensörü (TPMS)</div><div id="sag-lastik_basincli_sensor" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Kör Nokta Radar Uyarı Sistemi</div><div id="sag-kor_nokta_uyari" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Ayarlanabilir Ön Cam (Siperlik)</div><div id="sag-ayarlanabilir_cam" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Geri Vites Modu</div><div id="sag-geri_vites" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Aerodinamik Rüzgar Koruması</div><div id="sag-ruzgar_koruma_seviyesi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Orijinal Yan Çanta Desteği</div><div id="sag-yan_canta_destegi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Orijinal Arka (Üst) Çanta Desteği</div><div id="sag-ust_canta_destegi" class="content">-</div></div>
+                    <div class="features-row"><div class="topic">Merkez Park Standı (Orta Sehpa)</div><div id="sag-orta_sehpa" class="content">-</div></div>
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+    <script src="script.js"></script>
+    <div id="lightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; justify-content:center; align-items:center;">
+        <span id="lightbox-kapat" style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+        <img id="lightbox-img" style="max-width:90%; max-height:90%; object-fit:contain;" src="" alt="Büyük Motor Görseli">
+    </div>
+</body>
+</html>
