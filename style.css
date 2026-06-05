@@ -243,3 +243,26 @@ z-index: 99
 .btn-left:active, .btn-right:active {
     transform: translateY(-50%) scale(1.00); 
 }
+
+/* Ekran genişliği 768 pikselden küçükse (Yani Telefonlardaysa) bu kurallar çalışsın */
+@media (max-width: 768px) {
+    /* Motorları yan yana koyduğun o ana div (muhtemelen flex veya grid'dir) */
+    .main-container {
+        flex-direction: column !important; /* Yan yana duran motorları alt alta al */
+    }
+
+    /* Motor kutuları veya tablolar */
+    .img-box {
+        width: 100% !important; /* Ekranı tamamen kaplasın, taşmasın */
+        margin-bottom: 20px;
+    }
+
+    /* Yazı boyutlarını mobilde okunabilir yapmak için biraz küçültüyoruz */
+    h1 {
+        font-size: 24px !important;
+    }
+    
+    p, span {
+        font-size: 14px !important;
+    }
+}

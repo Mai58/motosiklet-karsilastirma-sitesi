@@ -37,6 +37,10 @@ Bu proje, iki farklı motosikleti yan yana getirerek teknik özelliklerini, dona
 - daha fazla motor eklenecek.
 - site yayınlanmaya hazır hale getirilecek.
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3f4065c229f8cf2fb7bfd8d30f0ae42faf29c715
 ---
 
 ### 📜 Lisans

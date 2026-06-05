@@ -8,8 +8,6 @@ let sagAktifIndeks = 0;
 // =======================================================
 // 🔥 DEVASA KIYASLAMA ŞEMASI (METRİK DEPOSU)
 // =======================================================
-// yuksek_iyi: false -> Değeri küçük olan motor yeşil yanar (Örn: Tüketim, Hızlanma süresi, Ağırlık)
-// yuksek_iyi: true  -> Değeri büyük olan motor yeşil yanar (Örn: Beygir, Tork, Depo)
 const kiyaslamaMetrikleri = {
     // 📊 Performans ve Hız Verileri
     "max_hiz": { yuksek_iyi: true, tip: "sayi" },
@@ -25,18 +23,18 @@ const kiyaslamaMetrikleri = {
     "silindir_sayisi": { yuksek_iyi: true, tip: "sayi" },
     "vites_sayisi": { yuksek_iyi: true, tip: "sayi" },
 
-    // ⛽ Yakıt Tüketim Standartları (İstediğin Neon Yeşil Ayarları Burada)
-    "sehir_ici_tuketim": { yuksek_iyi: false, tip: "sayi" },  // Az yakan kazanır!
-    "sehir_disi_tuketim": { yuksek_iyi: false, tip: "sayi" }, // Az yakan kazanır!
-    "karma_tuketim": { yuksek_iyi: false, tip: "sayi" },      // Az yakan kazanır!
-    "tahmini_menzil": { yuksek_iyi: true, tip: "sayi" },     // Menzili çok olan kazanır!
+    // ⛽ Yakıt Tüketim Standartları
+    "sehir_ici_tuketim": { yuksek_iyi: false, tip: "sayi" },
+    "sehir_disi_tuketim": { yuksek_iyi: false, tip: "sayi" },
+    "karma_tuketim": { yuksek_iyi: false, tip: "sayi" },
+    "tahmini_menzil": { yuksek_iyi: true, tip: "sayi" },
     
     // ⚖️ Ölçü ve Hacimler
-    "agirlik": { yuksek_iyi: false, tip: "sayi" },            // Hafif olan motor kazanır!
-    "kuru_agirlik": { yuksek_iyi: false, tip: "sayi" },       // Hafif olan motor kazanır!
+    "agirlik": { yuksek_iyi: false, tip: "sayi" },
+    "kuru_agirlik": { yuksek_iyi: false, tip: "sayi" },
     "depo_hacmi": { yuksek_iyi: true, tip: "sayi" },
 
-    // 💻 Elektronik Sürücü Asistanları (Var/Yok Kontrolü)
+    // 💻 Elektronik Sürücü Asistanları
     "abs_sistemi": { yuksek_iyi: true, tip: "teknoloji" },
     "abs_viraj_destekli": { yuksek_iyi: true, tip: "teknoloji" },
     "viraj_abs": { yuksek_iyi: true, tip: "teknoloji" },
@@ -56,51 +54,24 @@ const kiyaslamaMetrikleri = {
     "koltuk_isitma": { yuksek_iyi: true, tip: "teknoloji" },
     "lastik_basincli_sensor": { yuksek_iyi: true, tip: "teknoloji" }
 };
+
 // =======================================================
-// 🗺️ HTML ID EŞLEME HARİTASI (GÜNCELLENDİ)
+// 🗺️ HTML ID EŞLEME HARİTASI
 // =======================================================
 const idHaritasi = {
-    // Kimlik
     "marka": "marka", "model": "model", "tam_model_adi": "tam_model_adi", "versiyon": "versiyon", "segment": "segment", "uretim_durumu": "uretim_durumu", "ulke": "ulke",
-    // Performans
     "max_hiz": "max_hiz", "hizlanma_0_100": "hizlanma_0_100", "80_120_hizlanma": "80_120_hizlanma", "100_200_hizlanma": "100_200_hizlanma", "son_hiz_test": "son_hiz_test", "guc_agirlik_orani": "guc_agirlik_orani", "tork_agirlik_orani": "tork_agirlik_orani", "yaklasik_fiyat": "yaklasik_fiyat",
-    
-    // 🪪 EHLİYET VE PROFİL BÖLÜMÜ (BURASI DÜZELTİLDİ 🎯)
-    // JSON'daki anahtar kelimeler sırasıyla senin HTML'indeki ID'lere bağlanıyor:
-"ehliyet seviyesi": "ehliyet_seviyesi", 
-    "ehliyet_sinifi": "ehliyet_sinifi",
-    "gerekli_ehliyet_sinifi": "ehliyet_sinifi",
-    "gerekli_ehliyet": "ehliyet_sinifi",
-    
+    "ehliyet seviyesi": "ehliyet_seviyesi", "ehliyet_sinifi": "ehliyet_sinifi", "gerekli_ehliyet_sinifi": "ehliyet_sinifi", "gerekli_ehliyet": "ehliyet_sinifi",
     "offroad_uygun": "offroad_uygun", "uzun_yol_uygun": "uzun_yol_uygun", "sehir_ici_uygun": "sehir_ici_uygun", "boy_kisa_surucu_uygun": "boy_kisa_surucu_uygun",
-    // Mekanik
     "motor_hacmi": "motor-hacmi", "beygir_gucu_hp": "beygir_gucu_hp", "guc_devri_rpm": "guc_devri_rpm", "maks_tork_nm": "maks_tork_nm", "tork_devri_rpm": "tork_devri_rpm", "uretici_guc_verisi": "uretici_guc_verisi", "uretici_tork_verisi": "uretici_tork_verisi", "silindir_sayisi": "silindir_sayisi", "silindir_dizilimi": "silindir_dizilimi", "zamanlama_tipi": "zamanlama_tipi", "supap_sayisi": "supap_sayisi", "eksantrik_tipi": "eksantrik_tipi", "cap_strok": "cap_strok", "sikistirma_orani": "sikistirma_orani", "sogutma_sistemi": "sogutma_sistemi", "yakit_besleme": "yakit_besleme", "gaz_kontrolu": "gaz_kontrolu", "atesleme_tipi": "atesleme_tipi", "yaglama_tipi": "yaglama_tipi", "euro_standardi": "euro_standardi", "co2_salinimi": "co2_salinimi",
-    // Aktarma
     "vites_sayisi": "vites_sayisi", "sanziman_tipi": "sanziman_tipi", "son_aktarma": "son_aktarma", "debriyaj_yapisi": "debriyaj_yapisi", "kaydirmali_debriyaj": "kaydirmali_debriyaj", "zincir_ebati": "zincir_ebati",
-    // Ölçüler
     "sele_yuksekligi": "sele_yuksekligi", "yolcu_sele_yuksekligi": "yolcu_sele_yuksekligi", "sele_genisligi": "sele_genisligi", "agirlik": "agirlik", "kuru_agirlik": "kuru_agirlik", "depo_hacmi": "depo_hacmi", "tahmini_menzil": "tahmini_menzil", "toplam_uzunluk": "toplam_uzunluk", "toplam_genislik": "toplam_genislik", "toplam_yukseklik": "toplam_yukseklik", "yerden_yukseklik": "yerden_yukseklik", "aks_mesafesi": "aks_mesafesi", "tasima_kapasitesi": "tasima_kapasitesi",
-    // Tüketim
     "sehir_ici_tuketim": "sehir_ici_tuketim", "sehir_disi_tuketim": "sehir_disi_tuketim", "karma_tuketim": "karma_tuketim", "yillik_tahmini_yakit_maliyeti": "yillik_tahmini_yakit_maliyeti",
-    // Yürüyen
     "on_suspansiyon": "on_suspansiyon", "on_suspansiyon_cap": "on_suspansiyon_cap", "on_suspansiyon_hareket": "on_suspansiyon_hareket", "on_suspansiyon_ayarlanabilirlik": "on_suspansiyon_ayarlanabilirlik", "arka_suspansiyon": "arka_suspansiyon", "arka_suspansiyon_ayarlanabilirlik": "arka_suspansiyon_ayarlanabilirlik", "suspansiyon_ayari_genel": "suspansiyon_ayari_genel", "on_fren_tipi": "on_fren_tipi", "on_fren_disk_sayisi": "on_fren_disk_sayisi", "on_disk_cap": "on_disk_cap", "on_kaliper_tipi": "on_kaliper_tipi", "arka_fren_tipi": "arka_fren_tipi", "arka_fren_disk_sayisi": "arka_fren_disk_sayisi", "arka_disk_cap": "arka_disk_cap", "kaster_acisi": "kaster_acisi", "iz_mesafesi": "iz_mesafesi",
-    // Lastik
     "on_lastik_ebat": "on_lastik_ebat", "arka_lastik_ebat": "arka_lastik_ebat", "on_jant_olcusu": "on_jant_olcusu", "arka_jant_olcusu": "arka_jant_olcusu", "jant_malzemesi": "jant_malzemesi", "lastik_tipi": "lastik_tipi", "lastik_markasi": "lastik_markasi", "lastik_modeli": "lastik_modeli",
-    // Elektronik Asistanlar
     "abs_sistemi": "abs_sistemi", "abs_viraj_destekli": "abs_viraj_destekli", "viraj_abs": "viraj_abs", "cekis_kontrol": "cekis_kontrol", "viraj_cekis_kontrol": "viraj_cekis_kontrol", "arka_kalkis_onleme": "arka_kalkis_onleme", "wheelie_control": "wheelie_control", "launch_control": "launch_control", "motor_fren_kontrol": "motor_fren_kontrol", "semi_aktif_suspansiyon": "semi_aktif_suspansiyon", "radar_sistemi": "radar_sistemi", "hiz_sabitleyici": "hiz_sabitleyici", "adaptif_hiz_sabitleyici": "adaptif_hiz_sabitleyici", "yokus_kalkis": "yokus_kalkis", "acil_fren_uyarisi": "acil_fren_uyarisi", "imu_sensoru": "imu_sensoru", "surus_modlari": "surus_modlari", "quickshifter_tipi": "quickshifter_tipi",
-    // Konfor
     "gosterge_ekrani": "gosterge_ekrani", "ekran_boyutu": "ekran_boyutu", "akilli_telefon_baglanti": "akilli_telefon_baglanti", "aydinlatma_teknolojisi": "aydinlatma_teknolojisi", "viraj_aydinlatma": "viraj_aydinlatma", "anahtarsiz_calistirma": "anahtarsiz_calistirma", "usb_soketi": "usb_soketi", "elcik_isitma": "elcik_isitma", "koltuk_isitma": "koltuk_isitma", "lastik_basincli_sensor": "lastik_basincli_sensor", "kor_nokta_uyari": "kor_nokta_uyari", "ayarlanabilir_cam": "ayarlanabilir_cam", "geri_vites": "geri_vites", "ruzgar_koruma_seviyesi": "ruzgar_koruma_seviyesi", "yan_canta_destegi": "yan_canta_destegi", "ust_canta_destegi": "ust_canta_destegi", "orta_sehpa": "orta_sehpa"
 };
-// 2. ADIM: data.json dosyasını çekip depoya atıyoruz
-fetch('data.json')
-    .then(response => {
-        if (!response.ok) throw new Error("Dosya bulunamadı reis!");
-        return response.json();
-    })
-    .then(data => {
-        motorVerileri = data;
-        console.log("Motor verileri başarıyla yüklendi kral!", motorVerileri);
-    })
-    .catch(error => console.error("Veri çekilirken patladık:", error));
 
 // 3. ADIM: HTML elemanlarını tanımlıyoruz
 const solInput = document.getElementById('left');
@@ -114,6 +85,87 @@ const sagIsimElementi = document.getElementById("sag-motor-adi");
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 const lightboxKapat = document.getElementById("lightbox-kapat");
+
+// =======================================================
+// 🎯 GOOGLE SEO: URL VE BAŞLIK GÜNCELLEME MOTORU
+// =======================================================
+function urlVeBaslikGuncelle() {
+    const solAd = solIsimElementi ? solIsimElementi.innerText : "-";
+    const sagAd = sagIsimElementi ? sagIsimElementi.innerText : "-";
+
+    // Eğer iki motor da seçilmişse URL ve Title'ı hırçınlaştır
+    if (solAd && sagAd && solAd !== "-" && sagAd !== "-") {
+        document.title = `${solAd} vs ${sagAd} Karşılaştırması | OTOM`;
+
+        // URL'ye uygun hale getirmek için boşlukları çizgi yap ve küçük harfe çevir
+        let urlSol = solAd.toLowerCase().trim().replace(/ /g, "-").replace(/\//g, "-");
+        let urlSag = sagAd.toLowerCase().trim().replace(/ /g, "-").replace(/\//g, "-");
+
+        // Sayfa yenilenmeden URL çubuğunu güncelliyoruz reis
+        window.history.pushState({}, "", `?karsilastir=${urlSol}-vs-${urlSag}`);
+    } else {
+        // Motorlardan biri silinirse başlığı ve URL'yi sıfırla
+        document.title = "OTOM | Akıllı Motosiklet Karşılaştırma Platformu";
+        window.history.pushState({}, "", window.location.pathname);
+    }
+}
+
+// =======================================================
+// 🎯 DEEP LINKING: GOOGLE'DAN GELEN LINKI OKUMA MOTORU
+// =======================================================
+function urlParametresiniOkuVeYukle() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const karsilastırmaIcerigi = urlParams.get('karsilastir'); // Örn: "mt-07-vs-mt-09"
+
+    if (karsilastırmaIcerigi && Object.keys(motorVerileri).length > 0) {
+        const motorlar = karsilastırmaIcerigi.split('-vs-');
+        if (motorlar.length === 2) {
+            const urlSolAd = motorlar[0].toLowerCase().trim();
+            const urlSagAd = motorlar[1].toLowerCase().trim();
+
+            let solBulunanKey = null;
+            let sagBulunanKey = null;
+
+            // Veri tabanımızdaki 38 motoru tarayıp linkteki isimlerle eşleşenleri cımbızlıyoruz
+            Object.keys(motorVerileri).forEach(key => {
+                const veri = motorVerileri[key];
+                const tamAd = (veri.kimlik_bilgileri && veri.kimlik_bilgileri.tam_model_adi) 
+                              ? veri.kimlik_bilgileri.tam_model_adi.toLowerCase().trim().replace(/ /g, "-").replace(/\//g, "-")
+                              : key.toLowerCase().trim().replace(/ /g, "-").replace(/\//g, "-");
+                
+                if (tamAd === urlSolAd) solBulunanKey = key;
+                if (tamAd === urlSagAd) sagBulunanKey = key;
+            });
+
+            // Eşleşen motorlar varsa sanki kullanıcı tıklamış gibi otomatik tetikliyoruz
+            if (solBulunanKey) {
+                const gorunurAd = motorVerileri[solBulunanKey].kimlik_bilgileri?.tam_model_adi || solBulunanKey;
+                solInput.value = gorunurAd;
+                ozellikleriGuncelle('sol', motorVerileri[solBulunanKey], solBulunanKey);
+            }
+            if (sagBulunanKey) {
+                const gorunurAd = motorVerileri[sagBulunanKey].kimlik_bilgileri?.tam_model_adi || sagBulunanKey;
+                sagInput.value = gorunurAd;
+                ozellikleriGuncelle('sag', motorVerileri[sagBulunanKey], sagBulunanKey);
+            }
+        }
+    }
+}
+
+// 2. ADIM: data.json dosyasını çekip depoya atıyoruz (GÜNCELLENDİ)
+fetch('data.json')
+    .then(response => {
+        if (!response.ok) throw new Error("Dosya bulunamadı reis!");
+        return response.json();
+    })
+    .then(data => {
+        motorVerileri = data;
+        console.log("Motor verileri başarıyla yüklendi kral!", motorVerileri);
+        
+        // 🎯 Veriler yüklendiği an Google'dan gelen link var mı diye kontrolü tetikliyoruz
+        urlParametresiniOkuVeYukle();
+    })
+    .catch(error => console.error("Veri çekilirken patladık:", error));
 
 // =======================================================
 // 🔥 KATMANLI VERİLERİ EKRANA BASMA MOTORU
@@ -136,7 +188,6 @@ function katmanliVerileriEkranaBas(yon, motorData) {
                     element.style.fontWeight = "normal";
                     element.style.color = "";
 
-                    // Boolean (Var/Yok) Kontrolü
                     if (deger === true || String(deger).toLowerCase() === "var") {
                         element.innerHTML = '<span style="color:#00ff66; font-weight:bold;">Var ✅</span>';
                     } else if (deger === false || String(deger).toLowerCase() === "yok") {
@@ -161,7 +212,6 @@ function motorlariKiyasla() {
 
     if (!solGiris || !sagGiris) return;
 
-    // Stilleri tamamen sıfırla
     Object.keys(idHaritasi).forEach(ozellikKey => {
         const idSufix = idHaritasi[ozellikKey];
         const solElement = document.getElementById(`sol-${idSufix}`);
@@ -170,7 +220,6 @@ function motorlariKiyasla() {
         if (sagElement) { sagElement.style.fontWeight = "normal"; sagElement.style.color = ""; }
     });
 
-    // Ana kıyaslama döngüsü
     Object.keys(kiyaslamaMetrikleri).forEach(ozellikKey => {
         const kural = kiyaslamaMetrikleri[ozellikKey];
         const idSufix = idHaritasi[ozellikKey];
@@ -180,7 +229,6 @@ function motorlariKiyasla() {
 
         if (solElement && sagElement) {
             
-            // 🚥 TEKNOLOJİK DONANIM KIYASLAMASI (Var/Yok)
             if (kural.tip === "teknoloji") {
                 const solVarMi = solElement.innerHTML.includes("Var ✅");
                 const sagVarMi = sagElement.innerHTML.includes("Var ✅");
@@ -195,7 +243,6 @@ function motorlariKiyasla() {
                 return;
             }
 
-            // 🔢 SAYISAL VERİ KIYASLAMASI (Yakıt Tüketimi, Beygir vs.)
             const solTemiz = solElement.innerText.replace(/[^0-9.,]/g, '').replace(',', '.');
             const sagTemiz = sagElement.innerText.replace(/[^0-9.,]/g, '').replace(',', '.');
 
@@ -209,7 +256,7 @@ function motorlariKiyasla() {
                 if (kural.yuksek_iyi) {
                     solKazandi = solSayi > sagSayi;
                 } else {
-                    solKazandi = solSayi < sagSayi; // Az olan iyi (Örn: Tüketimler)
+                    solKazandi = solSayi < sagSayi;
                 }
 
                 if (solKazandi) {
@@ -225,7 +272,7 @@ function motorlariKiyasla() {
 }
 
 // =======================================================
-// 🔄 EKRAN GÜNCELLEME ORTAK FONKSİYONU
+// 🔄 EKRAN GÜNCELLEME ORTAK FONKSİYONU (GÜNCELLENDİ)
 // =======================================================
 function ozellikleriGuncelle(yon, veri = null, profesyonelIsim = "") {
     const isimElementi = (yon === 'sol') ? solIsimElementi : sagIsimElementi;
@@ -251,9 +298,10 @@ function ozellikleriGuncelle(yon, veri = null, profesyonelIsim = "") {
         }
 
         motorlariKiyasla();
+        // 🎯 Ekrana veri her basıldığında URL'yi ve Başlığı dinamik olarak tetikliyoruz
+        urlVeBaslikGuncelle();
 
     } else {
-        // Temizleme modu
         const tumContentAlanlari = document.querySelectorAll(`[id^="${yon}-"]`);
         tumContentAlanlari.forEach(el => {
             el.innerText = "-";
@@ -265,6 +313,8 @@ function ozellikleriGuncelle(yon, veri = null, profesyonelIsim = "") {
         if (resimElementi) resimElementi.src = "";
 
         motorlariKiyasla();
+        // 🎯 Motor silindiğinde de URL temizlensin diye çağırıyoruz
+        urlVeBaslikGuncelle();
     }
 }
 
@@ -289,7 +339,7 @@ function galeriYenile(yon) {
     }
 }
 
-// 4. ADIM: İNPUT DİNLEYİCİLERİ VE ÖNERİ KUTULARI (HİBRİT YAPI)
+// 4. ADIM: İNPUT DİNLEYİCİLERİ VE ÖNERİ KUTULARI
 [
     { yon: 'sol', input: solInput, kutu: solOneriKutusu },
     { yon: 'sag', input: sagInput, kutu: sagOneriKutusu }
@@ -345,7 +395,7 @@ function galeriYenile(yon) {
 
 // 5. ADIM: BUTON GALERİ TETİKLEYİCİLERİ
 document.querySelector(".btn-left").addEventListener("click", () => {
-    solAktifIndeks = (solAktifIndeks - 1 + 100) % 100; // Güvenli geri sarma
+    solAktifIndeks = (solAktifIndeks - 1 + 100) % 100;
     galeriYenile('sol');
 });
 document.querySelector(".btn-right").addEventListener("click", () => {
@@ -353,7 +403,6 @@ document.querySelector(".btn-right").addEventListener("click", () => {
     galeriYenile('sol');
 });
 
-// Sağ butonları tam hedefleme
 const sagButonlar = document.querySelectorAll(".img-r button");
 if(sagButonlar.length >= 2) {
     sagButonlar[0].addEventListener("click", () => { sagAktifIndeks = (sagAktifIndeks - 1 + 100) % 100; galeriYenile('sag'); });
